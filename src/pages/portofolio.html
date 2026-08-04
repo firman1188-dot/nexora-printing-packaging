@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>Portofolio Hasil Produksi — NEXORA Printing & Packaging</title>
+  <meta name="description" content="Portofolio hasil produksi nyata NEXORA Printing & Packaging. Filter berdasarkan kategori, material, dan finishing.">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+</head>
+<body class="portfolio-page">
+  {{HEADER}}
+
+  <main class="page-main portfolio-experience" data-portfolio-app>
+    <section class="portfolio-shell">
+      <header class="portfolio-page-heading">
+        <div>
+          <span class="eyebrow">HASIL PRODUKSI NYATA</span>
+          <h1>Portofolio Hasil Produksi</h1>
+          <p>Kumpulan hasil cetak dan kemasan nyata dari berbagai kebutuhan brand. Pilih kategori untuk melihat karya yang relevan.</p>
+        </div>
+      </header>
+
+      <nav class="portfolio-filter-bar" data-portfolio-filters aria-label="Filter kategori portofolio"></nav>
+      <div class="portfolio-filter-context" data-portfolio-filter-context hidden></div>
+      <p class="portfolio-load-status" data-portfolio-status role="status" aria-live="polite"></p>
+
+      <div class="portfolio-workspace">
+        <section class="portfolio-gallery-area" aria-label="Daftar portofolio">
+          <div class="portfolio-result-grid" data-portfolio-grid></div>
+          <footer class="portfolio-gallery-footer">
+            <p data-portfolio-result-text></p>
+            <nav class="portfolio-pagination" data-portfolio-pagination aria-label="Paginasi portofolio"></nav>
+          </footer>
+        </section>
+
+        <aside class="portfolio-detail-panel" data-portfolio-detail aria-live="polite" aria-label="Detail portofolio"></aside>
+      </div>
+    </section>
+  </main>
+
+  {{FOOTER}}
+  {{CONSULTATION}}
+
+  <script src="/assets/js/site-config.js"></script>
+  <script src="/assets/js/icons.js"></script>
+  <script src="/assets/js/main.js"></script>
+  <script src="/assets/js/portfolio-data.js"></script>
+  <script src="/assets/js/portfolio.js"></script>
+</body>
+</html>

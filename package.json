@@ -1,0 +1,18 @@
+{
+  "name": "nexora-printing-packaging-v5-7-vercel",
+  "version": "5.7.0",
+  "private": true,
+  "type": "module",
+  "description": "NEXORA Printing & Packaging — deployment-ready for Vercel Preview and print.nexorabisnis.site.",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "dev": "node scripts/dev-server.mjs",
+    "verify": "node scripts/verify.mjs",
+    "qa": "npm run build && npm run verify && npm run verify:portfolio && npm run verify:material",
+    "verify:portfolio": "node scripts/verify-portfolio.mjs",
+    "verify:material": "node scripts/verify-material-finishing.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

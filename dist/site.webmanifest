@@ -1,0 +1,9 @@
+{
+  "name": "NEXORA Printing & Packaging",
+  "short_name": "NEXORA",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#071b3f",
+  "icons": []
+}
