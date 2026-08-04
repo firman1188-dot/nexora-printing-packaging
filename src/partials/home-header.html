@@ -14,18 +14,18 @@
 
     <div class="header-actions">
       <button class="btn btn-orange btn-compact" type="button" data-open-consultation>Konsultasi</button>
-      <button class="menu-toggle" type="button" data-mobile-toggle aria-expanded="false" aria-label="Buka menu">
+      <button class="menu-toggle" type="button" data-mobile-toggle aria-expanded="false" aria-controls="nexora-mobile-menu" aria-label="Buka menu navigasi">
         <span></span><span></span><span></span>
       </button>
     </div>
   </div>
 
-  <div class="mobile-menu" data-mobile-menu>
+  <div class="mobile-menu" id="nexora-mobile-menu" data-mobile-menu aria-hidden="true">
     <nav aria-label="Navigasi mobile homepage">
-      <a href="/">Beranda</a>
-      <a href="/portofolio.html">Portofolio</a>
-      <a href="/material-finishing.html">Material &amp; Finishing</a>
-      <a href="/kontak.html">Kontak</a>
+      <a href="/" data-mobile-nav="home">Beranda</a>
+      <a href="/portofolio.html" data-mobile-nav="portfolio">Portofolio</a>
+      <a href="/material-finishing.html" data-mobile-nav="material">Material &amp; Finishing</a>
+      <a href="/kontak.html" data-mobile-nav="contact">Kontak</a>
       <button class="btn btn-orange" type="button" data-open-consultation>Konsultasi</button>
     </nav>
   </div>

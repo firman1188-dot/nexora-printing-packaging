@@ -1,9 +1,9 @@
 {
-  "name": "nexora-printing-packaging-v5-7-vercel",
-  "version": "5.7.0",
+  "name": "nexora-printing-packaging-v5-7-1-mobile-ui",
+  "version": "5.7.1",
   "private": true,
   "type": "module",
-  "description": "NEXORA Printing & Packaging — deployment-ready for Vercel Preview and print.nexorabisnis.site.",
+  "description": "NEXORA Printing & Packaging — Vercel-ready with refined mobile homepage and fullscreen mobile navigation.",
   "scripts": {
     "build": "node scripts/build.mjs",
     "dev": "node scripts/dev-server.mjs",

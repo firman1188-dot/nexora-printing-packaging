@@ -24,15 +24,31 @@
     if (megaWrap && !megaWrap.contains(event.target)) closeMega();
   });
 
-  mobileToggle?.addEventListener('click', () => {
-    const isOpen = mobileMenu.classList.toggle('open');
+  const setMobileMenu = (isOpen) => {
+    if (!mobileMenu || !mobileToggle) return;
+    mobileMenu.classList.toggle('open', isOpen);
     mobileToggle.classList.toggle('open', isOpen);
     mobileToggle.setAttribute('aria-expanded', String(isOpen));
+    mobileToggle.setAttribute('aria-label', isOpen ? 'Tutup menu navigasi' : 'Buka menu navigasi');
+    mobileMenu.setAttribute('aria-hidden', String(!isOpen));
     body.classList.toggle('menu-open', isOpen);
+  };
+
+  mobileToggle?.addEventListener('click', () => {
+    setMobileMenu(!mobileMenu?.classList.contains('open'));
+  });
+
+  mobileMenu?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => setMobileMenu(false));
   });
 
   window.addEventListener('scroll', () => {
     header?.classList.toggle('scrolled', window.scrollY > 16);
+  }, { passive: true });
+
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth >= 900) setMobileMenu(false);
   }, { passive: true });
 
   // Active navigation
@@ -41,6 +57,21 @@
   if (path.includes('portofolio')) document.querySelector('[data-nav="portfolio"]')?.classList.add('active');
   if (path.includes('kontak')) document.querySelector('[data-nav="contact"]')?.classList.add('active');
   if (path.includes('material-finishing')) document.querySelector('[data-nav="material"]')?.classList.add('active');
+
+  const mobileNavKey = path === '/' || path.endsWith('/index.html')
+    ? 'home'
+    : path.includes('portofolio')
+      ? 'portfolio'
+      : path.includes('material-finishing')
+        ? 'material'
+        : path.includes('kontak')
+          ? 'contact'
+          : '';
+  if (mobileNavKey) {
+    const activeMobileLink = document.querySelector(`[data-mobile-nav="${mobileNavKey}"]`);
+    activeMobileLink?.classList.add('active');
+    activeMobileLink?.setAttribute('aria-current', 'page');
+  }
 
   // Business data
   document.querySelectorAll('[data-current-year]').forEach((node) => node.textContent = new Date().getFullYear());
@@ -85,7 +116,10 @@
     body.classList.remove('modal-open');
   };
 
-  document.querySelectorAll('[data-open-consultation]').forEach((button) => button.addEventListener('click', openModal));
+  document.querySelectorAll('[data-open-consultation]').forEach((button) => button.addEventListener('click', () => {
+    setMobileMenu(false);
+    openModal();
+  }));
   document.querySelectorAll('[data-close-consultation]').forEach((button) => button.addEventListener('click', closeModal));
 
   nextButton?.addEventListener('click', () => {
@@ -129,6 +163,7 @@
     if (event.key === 'Escape') {
       closeModal();
       closeMega();
+      setMobileMenu(false);
     }
   });
 

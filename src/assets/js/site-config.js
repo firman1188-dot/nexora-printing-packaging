@@ -1,7 +1,7 @@
 window.NEXORA_CONFIG = {
   siteUrl: 'https://print.nexorabisnis.site',
-  whatsapp: '6281234567890',
-  email: 'info@nexora.id',
+  whatsapp: '6289531036871',
+  email: 'nexora.dg88@gmail.com',
   address: 'Bandung, Jawa Barat',
   mapUrl: 'https://maps.google.com/?q=Bandung%2C%20Jawa%20Barat',
 

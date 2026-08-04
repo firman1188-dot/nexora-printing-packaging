@@ -1,0 +1,9 @@
+NEXORA v5.7.1 Mobile UI Patch
+
+package.json
+src/assets/css/styles.css
+src/assets/js/main.js
+src/partials/header.html
+src/partials/home-header.html
+MOBILE_UI_PATCH_V5_7_1.md
+PATCH_MANIFEST.txt
