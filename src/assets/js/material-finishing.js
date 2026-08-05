@@ -118,16 +118,26 @@
     display_order: Number(apiItem.display_order ?? apiItem.sort_order ?? local?.display_order ?? 9999)
   });
 
+  // Preserve the approved local catalogue when a Preview API responds successfully
+  // but returns an empty collection. This prevents the cards/detail panel from
+  // being cleared while Production or Preview master data is still being prepared.
   const mergeApiData = (payload) => {
     const api = payload?.data || payload || {};
     const local = localMasterData();
     const apiMaterials = Array.isArray(api.materials) ? api.materials : [];
     const apiFinishings = Array.isArray(api.finishings) ? api.finishings : [];
+    const materials = hasItems(apiMaterials)
+      ? apiMaterials.map((item) => mergeMaterial(item, findLocal(local.materials, 'material_id', 'material_slug', item)))
+      : local.materials;
+    const finishings = hasItems(apiFinishings)
+      ? apiFinishings.map((item) => mergeFinishing(item, findLocal(local.finishings, 'finishing_id', 'finishing_slug', item)))
+      : local.finishings;
+
     return {
       material_groups: hasItems(api.material_groups) ? api.material_groups : local.material_groups,
       finishing_groups: hasItems(api.finishing_groups) ? api.finishing_groups : local.finishing_groups,
-      materials: apiMaterials.map((item) => mergeMaterial(item, findLocal(local.materials, 'material_id', 'material_slug', item))),
-      finishings: apiFinishings.map((item) => mergeFinishing(item, findLocal(local.finishings, 'finishing_id', 'finishing_slug', item)))
+      materials,
+      finishings
     };
   };
 

@@ -1,0 +1,17 @@
+NEXORA PRINTING & PACKAGING
+PANDUAN PATCH v5.8.6 — MATERIAL & FINISHING DATA FALLBACK
+
+1. Pastikan branch development bersih.
+2. Backup folder aktif.
+3. Ekstrak patch dan timpa seluruh file ke root project.
+4. Jalankan: npm run qa
+5. Commit: git add . && git commit -m "Restore material finishing data fallback"
+6. Push: git push origin development
+7. Tunggu Vercel Preview berstatus Ready.
+8. Uji mode Material dan Finishing pada desktop serta mobile.
+9. Setelah disetujui, merge development ke main.
+
+CATATAN:
+- API tetap digunakan bila mengirim item.
+- Jika API Preview mengirim array material/finishing kosong, katalog lokal yang telah disetujui tetap tampil.
+- Tab aktif tetap oranye.

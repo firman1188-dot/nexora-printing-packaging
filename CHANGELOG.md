@@ -79,3 +79,11 @@
 - Added Mobile Control master data merging with safe local enrichment.
 - Added image fallback for master data without reference images.
 - Added integration QA verification and deployment documentation.
+
+## v5.8.6 — Material & Finishing Data Fallback
+
+- Mempertahankan card dan panel detail Material/Finishing ketika endpoint Preview berhasil tetapi mengembalikan array kosong.
+- Data API tetap menjadi sumber utama ketika item tersedia.
+- Fallback lokal hanya digunakan per mode yang kosong dan tidak mengubah data API yang valid.
+- Tab aktif Material/Finishing tetap menggunakan warna oranye NEXORA.
+- Asset cache key diperbarui ke `v=5.8.6`.

@@ -1,0 +1,31 @@
+NEXORA PRINTING & PACKAGING
+LAPORAN IMPLEMENTASI v5.8.6
+
+Tanggal : 6 Agustus 2026
+Status  : BUILD PASS / QA PASS / READY FOR PREVIEW
+
+MASALAH
+Preview Material & Finishing menampilkan filter, tetapi card dan panel detail menjadi kosong setelah respons API Preview berhasil namun mengembalikan array material/finishing kosong. Versi v5.8.5 kemudian mengganti katalog lokal yang sudah tampil dengan koleksi kosong tersebut.
+
+PERBAIKAN
+1. Data API tetap menjadi sumber utama bila mengirim item.
+2. Bila array material API kosong, katalog Material lokal yang telah disetujui tetap digunakan.
+3. Bila array finishing API kosong, katalog Finishing lokal yang telah disetujui tetap digunakan.
+4. Fallback dilakukan per mode, sehingga Material dan Finishing tidak saling memengaruhi.
+5. Tampilan desktop/mobile kembali seperti Production v5.8.3 yang telah disetujui.
+6. Tab aktif Material/Finishing tetap memakai warna oranye NEXORA.
+7. Cache key asset diperbarui menjadi v5.8.6.
+
+HASIL QA
+- Build: PASS
+- General verification: PASS
+- Portfolio verification: PASS
+- Material & Finishing verification: PASS
+- Public integration verification: PASS
+- Production readiness verification: PASS
+- v5.8.4 UI verification: PASS
+- v5.8.5 restoration verification: PASS
+- v5.8.6 data fallback verification: PASS
+
+CATATAN
+Perbaikan ini tidak mengubah database, endpoint API, Mobile Control, atau data Production. Perubahan hanya mencegah respons koleksi kosong menghapus tampilan katalog yang telah tersedia.
