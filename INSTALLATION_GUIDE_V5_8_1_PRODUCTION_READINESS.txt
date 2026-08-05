@@ -1,0 +1,36 @@
+NEXORA PRINTING & PACKAGING
+PANDUAN PATCH v5.8.1 — PRODUCTION READINESS
+
+Baseline : Website v5.8.0
+Target   : Branch development / Vercel Preview
+Status   : Header unification + API runtime refinement
+
+PERUBAHAN:
+1. Header Beranda, Portofolio, Material & Finishing, dan Kontak memakai markup dan geometri yang sama.
+2. Desktop memakai tinggi 76 px dan shared container.
+3. Mobile memakai tinggi 76 px, posisi logo, hamburger, dan dropdown yang sama.
+4. API publik tidak lagi mengakses req.query legacy.
+5. Default GAS timeout menjadi 25.000 ms.
+6. QA ditambah verify:readiness.
+
+PEMASANGAN:
+1. Pastikan branch development aktif dan working tree clean.
+2. Backup folder project.
+3. Salin seluruh isi patch ke root project dan pilih Replace All.
+4. Jalankan:
+   npm run qa
+5. Commit:
+   git add .
+   git commit -m "Unify shared header and finalize production readiness"
+   git push origin development
+6. Tunggu Vercel Preview READY.
+7. Pastikan Environment Variable Preview:
+   GAS_REQUEST_TIMEOUT_MS=25000
+8. Redeploy Preview development.
+9. QA pada 360, 390, 430, 768, 1024, dan 1440 px.
+10. Setelah PASS, merge development ke main dan konfigurasi Environment Variables Production.
+
+JANGAN:
+- mengubah Production sebelum Preview PASS;
+- memasukkan GAS_SHARED_SECRET ke source;
+- menghubungkan domain resmi sebelum deployment main v5.8.1 READY.

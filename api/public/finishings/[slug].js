@@ -1,7 +1,8 @@
-/** NEXORA Public Finishing Detail API v5.8.0 */
+/** NEXORA Public Finishing Detail API v5.8.1 */
 import {
   getAllActivePortfolios,
   getPublicMasters,
+  getRouteSlug,
   handlePublicError,
   PublicApiError,
   publicEnvelope,
@@ -13,7 +14,7 @@ export default async function handler(req, res) {
   if (!requireGet(req, res)) return;
   try {
     const masters = await getPublicMasters();
-    const item = masters.finishings.find((entry) => entry.finishing_slug === String(req.query?.slug || ''));
+    const item = masters.finishings.find((entry) => entry.finishing_slug === getRouteSlug(req));
     if (!item) throw new PublicApiError('FINISHING_NOT_FOUND', 'Finishing tidak ditemukan.', 404);
     const portfolios = (await getAllActivePortfolios(masters)).filter((portfolio) => portfolio.finishing_ids.includes(item.finishing_id));
     setPublicHeaders(res);

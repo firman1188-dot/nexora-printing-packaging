@@ -30,6 +30,11 @@ for (const secret of ['GAS_WEB_APP_URL', 'GAS_SHARED_SECRET', 'NEXORA_CLIENT_ID'
 }
 if (helper.includes('window.') || helper.includes('localStorage')) throw new Error('Server adapter tidak boleh bergantung pada browser storage.');
 if (!helper.includes("new Set(['GET_PORTFOLIO_MASTERS', 'LIST_PORTFOLIOS_PAGE', 'GET_PORTFOLIO'])")) throw new Error('Allowlist action publik belum terkunci.');
+if (!helper.includes('getRequestQuery') || !helper.includes('getRouteSlug')) throw new Error('WHATWG URL request parser belum tersedia.');
+for (const route of ['api/public/portfolio.js', 'api/public/portfolio/[slug].js', 'api/public/materials/[slug].js', 'api/public/finishings/[slug].js']) {
+  const routeSource = await readFile(path.join(root, route), 'utf8');
+  if (routeSource.includes('req.query')) throw new Error(`${route} masih memakai req.query legacy parser.`);
+}
 
 console.log('Public integration verification PASS');
 console.log(`Verified ${required.length} integration files`);

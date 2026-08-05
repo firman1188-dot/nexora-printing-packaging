@@ -1,0 +1,48 @@
+NEXORA PRINTING & PACKAGING
+IMPLEMENTATION REPORT v5.8.1 — PRODUCTION READINESS
+
+Tanggal  : 5 Agustus 2026
+Baseline : v5.8.0
+Status   : BUILD PASS / QA PASS / READY FOR VERCEL PREVIEW
+
+IMPLEMENTASI:
+1. Header Beranda, Portofolio, Material & Finishing, dan Kontak memakai markup yang sama.
+2. Desktop menggunakan tinggi header 76 px, shared container 1320 px, posisi logo,
+   navigasi, tombol, dan sticky behavior yang sama.
+3. Mobile menggunakan tinggi header 76 px, posisi logo x=18 px, hamburger 48 px,
+   dan dropdown yang sama pada seluruh halaman.
+4. API publik memakai WHATWG URL parser dan tidak lagi mengakses req.query legacy.
+5. Default Google Apps Script timeout dinaikkan menjadi 25.000 ms.
+6. Integrasi Mobile Control tetap read-only dan secret tetap server-side.
+
+HASIL QA SOURCE:
+- Build                               PASS
+- General verification                PASS
+- Portfolio verification              PASS
+- Material & Finishing verification   PASS
+- Public integration verification     PASS
+- Production readiness verification  PASS
+- API syntax check                     PASS
+- WHATWG query/slug unit test          PASS
+
+HASIL QA GEOMETRI HEADER:
+Desktop 1440 px:
+- Header semua halaman: 76 px
+- Shared shell semua halaman: x=60 px, width=1320 px
+- Logo semua halaman: x=60 px
+
+Mobile 390 px:
+- Header semua halaman: 76 px
+- Shared shell semua halaman: width=390 px
+- Logo semua halaman: x=18 px
+- Hamburger semua halaman: x=331 px, 48 × 48 px
+
+ENVIRONMENT PREVIEW:
+GAS_REQUEST_TIMEOUT_MS harus diubah menjadi 25000 lalu deployment development
+harus di-redeploy.
+
+PRODUCTION:
+Belum boleh dipromosikan sebelum hasil Vercel Preview v5.8.1 diperiksa pada
+360, 390, 430, 768, 1024, dan 1440 px.
+
+--- AKHIR LAPORAN ---

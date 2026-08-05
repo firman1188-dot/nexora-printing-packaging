@@ -2,16 +2,16 @@
  * Project  : NEXORA Printing & Packaging
  * Module   : Public Website Integration
  * File     : api/_lib/public-api.js
- * Version  : 5.8.0
+ * Version  : 5.8.1
  * Status   : Integration Candidate
  * Purpose  : Read-only server adapter from the public website to the existing
  *            Mobile Control Google Apps Script action API.
  * LOCKED   : Secrets stay server-side. Only allowlisted read actions are called.
- * Updated  : 2026-08-05 14:03 WIB
+ * Updated  : 2026-08-05 15:16 WIB
  */
 import { randomUUID } from 'node:crypto';
 
-const DEFAULT_TIMEOUT_MS = 15000;
+const DEFAULT_TIMEOUT_MS = 25000;
 const MAX_PORTFOLIO_ROWS = 500;
 const GAS_PAGE_SIZE = 50;
 
@@ -26,6 +26,32 @@ export class PublicApiError extends Error {
 }
 
 const getEnv = (name, fallback = '') => String(process.env[name] || fallback).trim();
+
+
+const requestUrl = (req) => {
+  const host = String(req?.headers?.host || 'localhost');
+  const protocol = String(req?.headers?.['x-forwarded-proto'] || 'https').split(',')[0].trim() || 'https';
+  return new URL(String(req?.url || '/'), `${protocol}://${host}`);
+};
+
+export const getRequestQuery = (req) => {
+  const values = {};
+  for (const [key, value] of requestUrl(req).searchParams.entries()) {
+    if (Object.prototype.hasOwnProperty.call(values, key)) {
+      values[key] = Array.isArray(values[key]) ? [...values[key], value] : [values[key], value];
+    } else {
+      values[key] = value;
+    }
+  }
+  return values;
+};
+
+export const getRouteSlug = (req) => {
+  const pathname = requestUrl(req).pathname;
+  const segments = pathname.split('/').filter(Boolean);
+  const last = segments.at(-1) || '';
+  return decodeURIComponent(last);
+};
 
 const requireServerConfig = () => {
   const config = {
@@ -329,7 +355,7 @@ export const publicEnvelope = (data) => ({
   data,
   error: null,
   timestamp: new Date().toISOString(),
-  version: '5.8.0'
+  version: '5.8.1'
 });
 
 export const errorEnvelope = (error) => ({
@@ -341,7 +367,7 @@ export const errorEnvelope = (error) => ({
     ...(error?.details ? { details: error.details } : {})
   },
   timestamp: new Date().toISOString(),
-  version: '5.8.0'
+  version: '5.8.1'
 });
 
 export const setPublicHeaders = (res, options = {}) => {

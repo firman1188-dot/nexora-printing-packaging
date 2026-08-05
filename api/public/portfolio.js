@@ -1,8 +1,9 @@
-/** NEXORA Public Portfolio API v5.8.0 */
+/** NEXORA Public Portfolio API v5.8.1 */
 import {
   filterPortfolios,
   getAllActivePortfolios,
   getPublicMasters,
+  getRequestQuery,
   handlePublicError,
   paginate,
   publicEnvelope,
@@ -13,10 +14,11 @@ import {
 export default async function handler(req, res) {
   if (!requireGet(req, res)) return;
   try {
+    const query = getRequestQuery(req);
     const masters = await getPublicMasters();
     const allItems = await getAllActivePortfolios(masters);
-    const filtered = filterPortfolios(allItems, req.query || {});
-    const page = paginate(filtered, req.query || {}, 500);
+    const filtered = filterPortfolios(allItems, query);
+    const page = paginate(filtered, query, 500);
     setPublicHeaders(res);
     if (req.method === 'HEAD') return res.status(200).end();
     return res.status(200).json(publicEnvelope({

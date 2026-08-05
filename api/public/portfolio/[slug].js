@@ -1,7 +1,8 @@
-/** NEXORA Public Portfolio Detail API v5.8.0 */
+/** NEXORA Public Portfolio Detail API v5.8.1 */
 import {
   getPortfolioBySlug,
   getPublicMasters,
+  getRouteSlug,
   handlePublicError,
   publicEnvelope,
   requireGet,
@@ -12,7 +13,7 @@ export default async function handler(req, res) {
   if (!requireGet(req, res)) return;
   try {
     const masters = await getPublicMasters();
-    const item = await getPortfolioBySlug(req.query?.slug, masters);
+    const item = await getPortfolioBySlug(getRouteSlug(req), masters);
     setPublicHeaders(res);
     if (req.method === 'HEAD') return res.status(200).end();
     return res.status(200).json(publicEnvelope(item));

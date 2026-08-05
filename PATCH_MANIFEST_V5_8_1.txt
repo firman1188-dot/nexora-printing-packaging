@@ -1,0 +1,35 @@
+NEXORA PRINTING & PACKAGING
+PATCH MANIFEST v5.8.1
+
+Baseline : v5.8.0
+Target   : v5.8.1
+Scope    : Shared header unification, WHATWG URL parser, timeout refinement,
+           production readiness QA.
+
+FILES:
+- .env.example
+- CHANGELOG.md
+- INSTALLATION_GUIDE_V5_8_1_PRODUCTION_READINESS.txt
+- NEXORA_IMPLEMENTATION_REPORT_v5.8.1.txt
+- api/_lib/public-api.js
+- api/public/categories.js
+- api/public/finishings/[slug].js
+- api/public/finishings.js
+- api/public/material-finishing.js
+- api/public/materials/[slug].js
+- api/public/materials.js
+- api/public/portfolio/[slug].js
+- api/public/portfolio.js
+- dist/assets/css/styles.css
+- dist/index.html
+- package.json
+- scripts/verify-production-readiness.mjs
+- scripts/verify-public-integration.mjs
+- src/assets/css/styles.css
+- src/partials/home-header.html
+
+INSTALLATION:
+Copy all patch contents into the active project root and choose Replace All.
+Run npm run qa before commit.
+
+--- END ---

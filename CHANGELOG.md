@@ -1,5 +1,13 @@
 # Changelog
 
+## v5.8.1 — Production Readiness & Shared Header
+- Menyamakan markup, tinggi, posisi logo, lebar container, navigasi, tombol, sticky behavior, dan hamburger header pada seluruh halaman.
+- Menghapus geometri header khusus Homepage yang menyebabkan posisi berbeda dari Portofolio dan Material & Finishing.
+- Mengganti akses `req.query` pada API publik dengan parser WHATWG `URL` untuk menghindari legacy `url.parse()` deprecation warning.
+- Menaikkan default timeout Google Apps Script dari 15 detik menjadi 25 detik untuk mengurangi cold-start timeout.
+- Menambahkan verifikasi production readiness pada rangkaian QA.
+- Mempertahankan seluruh integrasi Mobile Control v1.6.3, filter data aktif, dan keamanan secret server-side.
+
 ## v5.7.2 — Responsive Refinement
 - Nomor WhatsApp di halaman Kontak kini mengikuti `site-config.js`, termasuk teks yang tampil.
 - Menu mobile diubah dari fullscreen menjadi dropdown card compact.

@@ -3580,3 +3580,130 @@ body.material-finishing-page {
 .mf-check-list .mf-data-pending::before {
   display: none;
 }
+
+
+/* ========================================================================== 
+   NEXORA v5.8.1 — PRODUCTION READINESS: SHARED HEADER UNIFICATION
+   LOCKED: Homepage and all internal pages use one header geometry.
+   ========================================================================== */
+body.home-c1-final,
+body.portfolio-page,
+body.material-finishing-page,
+body.contact-page {
+  --header-h: 76px;
+}
+
+/* One fixed header geometry for every public page. */
+.site-header,
+.home-c1-final .site-header {
+  height: var(--header-h);
+  background: rgba(255,255,255,.94);
+  border-bottom-color: transparent;
+  box-shadow: none;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+.site-header.scrolled,
+.home-c1-final .site-header.scrolled {
+  box-shadow: 0 8px 28px rgba(7,27,63,.08);
+  border-color: rgba(7,27,63,.08);
+}
+.site-header .header-shell,
+.home-c1-final .header-shell {
+  width: min(1320px, calc(100% - 40px));
+  max-width: none;
+  height: 100%;
+  margin-inline: auto;
+  padding-inline: 0;
+  gap: 34px;
+}
+.site-header .brand,
+.site-header .brand-primary,
+.home-c1-final .brand,
+.home-c1-final .brand-primary {
+  min-width: 214px;
+}
+.site-header .desktop-nav,
+.home-c1-final .desktop-nav {
+  gap: 38px;
+}
+.site-header .desktop-nav > a,
+.home-c1-final .desktop-nav > a {
+  padding: 26px 0 24px;
+  font-size: .88rem;
+}
+.site-header .header-actions .btn,
+.home-c1-final .header-actions .btn {
+  min-height: 43px;
+  padding-inline: 18px;
+  border-radius: 10px;
+  font-size: .88rem;
+}
+
+/* All page content begins below the same frozen header height. */
+.home-c1-final .home-screen,
+.portfolio-page .page-main,
+.material-finishing-page .page-main,
+.contact-page .page-main {
+  padding-top: var(--header-h);
+}
+
+@media (max-width: 899px) {
+  :root { --header-h: 76px; }
+  body.home-c1-final,
+  body.portfolio-page,
+  body.material-finishing-page,
+  body.contact-page {
+    --header-h: 76px;
+  }
+  .site-header,
+  .home-c1-final .site-header {
+    height: var(--header-h);
+    background: #fff;
+    border-bottom-color: #e9edf3;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+  .site-header .header-shell,
+  .home-c1-final .header-shell {
+    width: 100%;
+    max-width: none;
+    height: 100%;
+    padding-inline: 18px;
+    gap: 20px;
+  }
+  .site-header .brand,
+  .site-header .brand-primary,
+  .home-c1-final .brand,
+  .home-c1-final .brand-primary {
+    min-width: 0;
+  }
+  .site-header .brand-logo-image,
+  .home-c1-final .brand-logo-image {
+    width: clamp(170px, 48vw, 208px);
+    max-height: 38px;
+  }
+  .site-header .brand-tagline,
+  .home-c1-final .brand-tagline {
+    padding-left: 43px;
+    font-size: .4rem;
+    letter-spacing: .18em;
+  }
+  .site-header .menu-toggle,
+  .home-c1-final .menu-toggle {
+    width: 48px;
+    height: 48px;
+    margin-right: -7px;
+  }
+  .site-header .mobile-menu,
+  .home-c1-final .mobile-menu {
+    top: calc(var(--header-h) + 10px);
+  }
+}
+
+@media (max-width: 430px) {
+  .site-header .header-shell,
+  .home-c1-final .header-shell {
+    padding-inline: 18px;
+  }
+}

@@ -1,7 +1,8 @@
-/** NEXORA Public Material Detail API v5.8.0 */
+/** NEXORA Public Material Detail API v5.8.1 */
 import {
   getAllActivePortfolios,
   getPublicMasters,
+  getRouteSlug,
   handlePublicError,
   PublicApiError,
   publicEnvelope,
@@ -13,7 +14,7 @@ export default async function handler(req, res) {
   if (!requireGet(req, res)) return;
   try {
     const masters = await getPublicMasters();
-    const item = masters.materials.find((entry) => entry.material_slug === String(req.query?.slug || ''));
+    const item = masters.materials.find((entry) => entry.material_slug === getRouteSlug(req));
     if (!item) throw new PublicApiError('MATERIAL_NOT_FOUND', 'Material tidak ditemukan.', 404);
     const portfolios = (await getAllActivePortfolios(masters)).filter((portfolio) => portfolio.material_ids.includes(item.material_id));
     setPublicHeaders(res);
