@@ -1,0 +1,50 @@
+NEXORA PRINTING & PACKAGING
+PATCH MANIFEST v5.8.4
+
+Baseline:
+v5.8.3
+
+Target:
+v5.8.4
+
+FILES TO ADD:
+INSTALLATION_GUIDE_V5_8_4_LOADER_SINGLE_VIEWPORT.txt
+NEXORA_IMPLEMENTATION_REPORT_v5.8.4.txt
+PATCH_MANIFEST_V5_8_4.txt
+scripts/verify-v5.8.4-ui.mjs
+
+FILES TO REPLACE:
+CHANGELOG.md
+package.json
+scripts/verify-production-readiness.mjs
+src/pages/index.html
+src/pages/404.html
+src/pages/portofolio.html
+src/pages/material-finishing.html
+src/pages/kontak.html
+src/assets/css/styles.css
+src/assets/js/portfolio.js
+src/assets/js/material-finishing.js
+dist/index.html
+dist/404.html
+dist/portofolio.html
+dist/material-finishing.html
+dist/kontak.html
+dist/assets/css/styles.css
+dist/assets/js/portfolio.js
+dist/assets/js/material-finishing.js
+
+FILES TO DELETE:
+NONE
+
+SECURITY:
+- No .env file
+- No GAS URL
+- No shared secret
+- No production credential
+
+QA COMMAND:
+npm run qa
+
+EXPECTED FINAL RESULT:
+v5.8.4 UI verification PASS

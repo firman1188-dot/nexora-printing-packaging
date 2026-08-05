@@ -1,0 +1,147 @@
+NEXORA PRINTING & PACKAGING
+PANDUAN PEMASANGAN PATCH v5.8.4
+DATABASE LOADER & SINGLE-VIEWPORT MOBILE HOMEPAGE
+
+Baseline : v5.8.3 Production
+Target   : v5.8.4
+Branch   : development terlebih dahulu
+Status   : BUILD PASS / QA PASS
+
+============================================================
+1. RUANG LINGKUP
+============================================================
+
+A. DATABASE LOADING INDICATOR
+- Empat kotak membesar dan mengecil secara bergantian.
+- Urutan animasi searah jarum jam:
+  kiri atas → kanan atas → kanan bawah → kiri bawah.
+- Diterapkan pada:
+  1. Portofolio;
+  2. Material & Finishing.
+- Header tetap terlihat selama loading.
+- Konten database tertutup overlay hingga proses selesai.
+- aria-busy digunakan untuk aksesibilitas.
+- Durasi minimum 420 ms mencegah indikator berkedip terlalu cepat.
+
+B. HOMEPAGE
+- Teks CREATIVE PRINT LAB dihapus pada desktop dan mobile.
+- Homepage mobile dikunci dalam satu dynamic viewport.
+- Document scroll pada Homepage mobile dinonaktifkan.
+- Judul, deskripsi, visual produk, tombol, dan kategori disusun ulang.
+- Seluruh tujuh kategori tetap terlihat dalam dua baris.
+- Bagian kategori tidak turun ke halaman scroll.
+
+============================================================
+2. PEMASANGAN PATCH
+============================================================
+
+Buka terminal WSL:
+
+cd ~/projects/nexora-printing-packaging-final-v5.6
+
+Pastikan branch:
+
+git checkout development
+git pull origin development
+git status
+
+Target:
+
+nothing to commit, working tree clean
+
+Buat backup:
+
+cd ~/projects
+cp -r nexora-printing-packaging-final-v5.6 \
+      nexora-printing-packaging-final-v5.6-backup-before-v5.8.4
+
+Ekstrak file patch:
+
+nexora-v5.8.3-to-v5.8.4-loader-single-viewport-patch.zip
+
+Salin seluruh isi patch ke:
+
+\\wsl.localhost\Ubuntu\home\firman\projects\nexora-printing-packaging-final-v5.6
+
+Pilih:
+
+Replace the files in the destination
+
+============================================================
+3. QA LOKAL
+============================================================
+
+cd ~/projects/nexora-printing-packaging-final-v5.6
+npm run qa
+
+Target akhir:
+
+v5.8.4 UI verification PASS
+Clockwise four-square loader and single-viewport mobile homepage verified
+
+============================================================
+4. COMMIT PREVIEW
+============================================================
+
+git add .
+git commit -m "Add database loader and single viewport mobile homepage"
+git push origin development
+
+Tunggu Vercel membuat deployment:
+
+Environment : Preview
+Branch      : development
+Status      : Ready
+
+============================================================
+5. QA PREVIEW
+============================================================
+
+Periksa:
+
+/
+ /portofolio
+ /material-finishing
+ /kontak
+
+Ukuran minimum pengujian Homepage:
+
+360 × 800
+390 × 844
+430 × 932
+
+Pastikan:
+
+[ ] CREATIVE PRINT LAB tidak tampil
+[ ] Homepage tidak dapat digulir vertikal
+[ ] Kategori bagian bawah terlihat penuh
+[ ] Tombol Lihat Portofolio terlihat
+[ ] Tidak ada tumpang tindih judul dan gambar
+[ ] Loader empat kotak tampil saat membuka Portofolio
+[ ] Loader empat kotak tampil saat membuka Material & Finishing
+[ ] Urutan animasi bergerak searah jarum jam
+[ ] Data selesai tampil setelah loading
+[ ] Filter dan detail tetap berfungsi
+
+============================================================
+6. RELEASE PRODUCTION
+============================================================
+
+Setelah Preview disetujui:
+
+git checkout main
+git pull origin main
+git merge development
+git push origin main
+
+Tunggu deployment Production berstatus Ready.
+
+Lakukan hard refresh satu kali:
+
+Ctrl + Shift + R
+
+Domain resmi:
+
+https://print.nexorabisnis.site
+
+--- AKHIR DOKUMEN ---

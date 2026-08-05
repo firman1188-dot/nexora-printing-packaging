@@ -1,0 +1,117 @@
+NEXORA PRINTING & PACKAGING
+LAPORAN IMPLEMENTASI v5.8.4
+DATABASE LOADER & SINGLE-VIEWPORT MOBILE HOMEPAGE
+
+Tanggal    : 5 Agustus 2026
+Baseline   : v5.8.3
+Target     : v5.8.4
+Status     : BUILD PASS / QA PASS / READY FOR PREVIEW
+
+============================================================
+1. PERUBAHAN YANG DIIMPLEMENTASIKAN
+============================================================
+
+1. Database Loader
+- Loader berbentuk empat kotak.
+- Kotak membesar dan mengecil bergantian.
+- Urutan kiri atas, kanan atas, kanan bawah, kiri bawah.
+- Animasi menggunakan keyframe nexora-clockwise-square.
+- Overlay berada di bawah header dan menutup area konten.
+- Loader digunakan pada Portofolio serta Material & Finishing.
+- Status aksesibilitas menggunakan aria-busy.
+- Minimum display duration 420 ms.
+
+2. Homepage
+- Label CREATIVE PRINT LAB dihapus dari markup Homepage.
+- Mobile Homepage menggunakan height: 100dvh.
+- Document scroll dinonaktifkan khusus Homepage mobile.
+- Hero dan kategori menggunakan grid satu viewport.
+- Ukuran judul, deskripsi, gambar, tombol, ikon, dan kartu kategori responsif.
+- Tujuh kategori selalu tersedia dalam komposisi 4 + 3.
+- Desktop mempertahankan konsep utama tanpa label CREATIVE PRINT LAB.
+
+3. Cache
+- CSS dan JavaScript menggunakan query version v5.8.4.
+- Kontrak API Mobile Control tidak diubah.
+
+============================================================
+2. HASIL QA OTOMATIS
+============================================================
+
+Build                                : PASS
+General verification                 : PASS
+Portfolio verification               : PASS
+Material & Finishing verification    : PASS
+Public integration verification      : PASS
+Production readiness verification    : PASS
+v5.8.4 UI verification               : PASS
+
+============================================================
+3. HASIL QA VIEWPORT
+============================================================
+
+360 × 800
+- document scrollHeight : 800
+- viewport innerHeight  : 800
+- kategori bottom       : 800
+- document scroll       : TIDAK ADA
+
+390 × 844
+- document scrollHeight : 844
+- viewport innerHeight  : 844
+- kategori bottom       : 844
+- document scroll       : TIDAK ADA
+
+430 × 932
+- document scrollHeight : 932
+- viewport innerHeight  : 932
+- kategori bottom       : 932
+- document scroll       : TIDAK ADA
+
+1440 × 900
+- label CREATIVE PRINT LAB : TIDAK ADA
+- struktur desktop          : PASS
+
+============================================================
+4. HASIL QA LOADER
+============================================================
+
+Jumlah kotak               : 4
+Urutan searah jarum jam    : PASS
+Overlay memenuhi viewport  : PASS
+Header tetap terlihat      : PASS
+Label loading              : PASS
+aria-busy=true saat loading: PASS
+Error state terpisah       : PASS
+
+============================================================
+5. FILE UTAMA YANG BERUBAH
+============================================================
+
+src/pages/index.html
+src/pages/portofolio.html
+src/pages/material-finishing.html
+src/pages/kontak.html
+src/pages/404.html
+src/assets/css/styles.css
+src/assets/js/portfolio.js
+src/assets/js/material-finishing.js
+scripts/verify-v5.8.4-ui.mjs
+scripts/verify-production-readiness.mjs
+package.json
+CHANGELOG.md
+dist/*
+
+============================================================
+6. KEAMANAN DAN INTEGRASI
+============================================================
+
+- Tidak ada secret yang ditambahkan ke source.
+- Environment Variables Vercel tidak diubah.
+- API publik tetap read-only.
+- Mobile Control tetap menjadi sumber data resmi.
+- Portofolio hanya menampilkan status ACTIVE.
+- Material dan Finishing tetap mengikuti active=true.
+- Release wajib melalui Preview sebelum Production.
+
+--- AKHIR LAPORAN ---

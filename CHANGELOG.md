@@ -1,3 +1,14 @@
+# v5.8.4 — Database Loader & Single-Viewport Mobile Homepage
+
+- Menambahkan indikator loading empat kotak yang membesar dan mengecil berurutan searah jarum jam.
+- Menerapkan loader pada pengambilan data Portofolio serta Material & Finishing.
+- Menambahkan durasi minimum 420 ms agar indikator tidak berkedip terlalu cepat.
+- Menghapus teks `CREATIVE PRINT LAB` dari Homepage desktop dan mobile.
+- Mengunci Homepage mobile pada satu dynamic viewport tanpa document scroll.
+- Memadatkan komposisi judul, deskripsi, visual, tombol, dan kategori agar seluruhnya tetap terlihat.
+- Mempertahankan API Mobile Control, desain desktop, header bersama, dan kontrak Production v5.8.3.
+- Menaikkan cache key asset dan envelope API ke v5.8.4.
+
 # v5.8.3 — Contact Proportion & Dynamic Finishing Filter Fit
 
 - Added missing `contact-page` body class.

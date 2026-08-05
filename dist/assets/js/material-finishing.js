@@ -60,6 +60,23 @@
   };
 
   const fallbackImage = '/assets/images/material-finishing/sample-fallback.svg';
+  const minimumLoaderDuration = 420;
+  const loaderMarkup = (label) => `
+    <span class="nexora-data-loader" aria-hidden="true">
+      <i></i><i></i><i></i><i></i>
+    </span>
+    <span class="nexora-data-loader-label">${escapeHtml(label)}</span>`;
+
+  const setLoadingState = (loading, label = '') => {
+    root.classList.toggle('is-data-loading', loading);
+    root.setAttribute('aria-busy', String(loading));
+    elements.status.classList.toggle('is-loading', loading);
+    elements.status.classList.remove('is-error');
+    elements.status.innerHTML = loading ? loaderMarkup(label) : '';
+  };
+
+  const wait = (ms) => new Promise((resolve) => window.setTimeout(resolve, ms));
+
   const localMasterData = () => window.NEXORA_MATERIAL_FINISHING_DATA || { materials: [], finishings: [], material_groups: [], finishing_groups: [] };
 
   const hasItems = (value) => Array.isArray(value) && value.length > 0;
@@ -363,12 +380,17 @@
   };
 
   const init = async () => {
-    elements.status.textContent = 'Memuat sampel…';
+    setLoadingState(true, 'Memuat material dan finishing dari database');
     state.pageSize = resolvePageSize();
-    state.data = await loadData();
-    state.portfolios = await loadPortfolio();
+
+    const [[data, portfolios]] = await Promise.all([
+      Promise.all([loadData(), loadPortfolio()]),
+      wait(minimumLoaderDuration)
+    ]);
+    state.data = data;
+    state.portfolios = portfolios;
     applyUrl();
-    elements.status.textContent = '';
+    setLoadingState(false);
 
     elements.modeButtons.forEach((button) => button.addEventListener('click', () => {
       state.mode = button.dataset.mfMode;
@@ -400,6 +422,10 @@
 
   init().catch((error) => {
     console.error(error);
+    root.classList.remove('is-data-loading');
+    root.setAttribute('aria-busy', 'false');
+    elements.status.classList.remove('is-loading');
+    elements.status.classList.add('is-error');
     elements.status.innerHTML = '<strong>Material & Finishing gagal dimuat.</strong>';
   });
 })();

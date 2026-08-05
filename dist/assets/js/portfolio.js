@@ -46,6 +46,22 @@
 
   const icon = (name) => window.NEXORA_ICONS?.[name] || '';
   const imageFallback = '/assets/images/material-finishing/sample-fallback.svg';
+  const minimumLoaderDuration = 420;
+  const loaderMarkup = (label) => `
+    <span class="nexora-data-loader" aria-hidden="true">
+      <i></i><i></i><i></i><i></i>
+    </span>
+    <span class="nexora-data-loader-label">${escapeHtml(label)}</span>`;
+
+  const setLoadingState = (loading, label = '') => {
+    root.classList.toggle('is-data-loading', loading);
+    root.setAttribute('aria-busy', String(loading));
+    elements.status.classList.toggle('is-loading', loading);
+    elements.status.classList.remove('is-error');
+    elements.status.innerHTML = loading ? loaderMarkup(label) : '';
+  };
+
+  const wait = (ms) => new Promise((resolve) => window.setTimeout(resolve, ms));
 
   const normalizeData = (payload) => {
     const source = payload?.data || payload || {};
@@ -405,11 +421,16 @@
   };
 
   const init = async () => {
-    elements.status.textContent = 'Memuat portofolio…';
+    setLoadingState(true, 'Memuat portofolio dari database');
     state.pageSize = resolvePageSize();
-    state.data = await loadData();
+
+    const [data] = await Promise.all([
+      loadData(),
+      wait(minimumLoaderDuration)
+    ]);
+    state.data = data;
     applyUrlFilters();
-    elements.status.textContent = '';
+    setLoadingState(false);
     render();
 
     document.addEventListener('keydown', (event) => {
@@ -431,6 +452,10 @@
 
   init().catch((error) => {
     console.error(error);
+    root.classList.remove('is-data-loading');
+    root.setAttribute('aria-busy', 'false');
+    elements.status.classList.remove('is-loading');
+    elements.status.classList.add('is-error');
     elements.status.innerHTML = '<strong>Portofolio gagal dimuat.</strong><br>Periksa sumber data atau koneksi API.';
   });
 })();
