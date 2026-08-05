@@ -34,8 +34,14 @@
     body.classList.toggle('menu-open', isOpen);
   };
 
-  mobileToggle?.addEventListener('click', () => {
+  mobileToggle?.addEventListener('click', (event) => {
+    event.stopPropagation();
     setMobileMenu(!mobileMenu?.classList.contains('open'));
+  });
+
+  mobileMenu?.addEventListener('click', (event) => event.stopPropagation());
+  document.addEventListener('click', () => {
+    if (mobileMenu?.classList.contains('open')) setMobileMenu(false);
   });
 
   mobileMenu?.querySelectorAll('a').forEach((link) => {
@@ -75,8 +81,27 @@
 
   // Business data
   document.querySelectorAll('[data-current-year]').forEach((node) => node.textContent = new Date().getFullYear());
+
+  const whatsappDigits = String(config.whatsapp || '').replace(/\D/g, '');
+  const formatWhatsapp = (digits) => {
+    if (!digits) return '-';
+    const local = digits.startsWith('62') ? digits.slice(2) : digits.replace(/^0/, '');
+    const chunks = [];
+    let cursor = 0;
+    const sizes = local.length > 10 ? [3, 4, 4] : [3, 4, 3];
+    sizes.forEach((size) => {
+      if (cursor < local.length) chunks.push(local.slice(cursor, cursor + size));
+      cursor += size;
+    });
+    if (cursor < local.length) chunks.push(local.slice(cursor));
+    return `+62 ${chunks.filter(Boolean).join('-')}`;
+  };
+
   document.querySelectorAll('[data-business-whatsapp]').forEach((node) => {
-    node.href = `https://wa.me/${config.whatsapp || ''}`;
+    node.href = `https://wa.me/${whatsappDigits}`;
+    if (node.hasAttribute('data-business-whatsapp-label')) {
+      node.textContent = `WhatsApp: ${formatWhatsapp(whatsappDigits)}`;
+    }
   });
   document.querySelectorAll('[data-business-email]').forEach((node) => {
     node.textContent = config.email || 'info@nexora.id';

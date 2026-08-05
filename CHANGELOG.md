@@ -1,5 +1,12 @@
 # Changelog
 
+## v5.7.2 — Responsive Refinement
+- Nomor WhatsApp di halaman Kontak kini mengikuti `site-config.js`, termasuk teks yang tampil.
+- Menu mobile diubah dari fullscreen menjadi dropdown card compact.
+- Homepage mobile disusun vertikal agar teks dan gambar tidak bertabrakan.
+- Tombol aksi detail Material & Finishing dikunci di bawah; area informasi scroll internal.
+- Skala desktop homepage, Portofolio, dan Material & Finishing dibuat lebih proporsional.
+
 ## v5.6.0 — Final Full Source
 
 - mempertahankan homepage C1 yang sudah disetujui;

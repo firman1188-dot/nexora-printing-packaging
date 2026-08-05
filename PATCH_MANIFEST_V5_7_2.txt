@@ -1,0 +1,8 @@
+NEXORA v5.7.2 patch files
+package.json
+src/assets/css/styles.css
+src/assets/js/main.js
+src/pages/index.html
+src/pages/kontak.html
+RESPONSIVE_REFINEMENT_V5_7_2.md
+PATCH_MANIFEST_V5_7_2.txt
