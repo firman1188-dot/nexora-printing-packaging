@@ -1,0 +1,74 @@
+NEXORA PRINTING & PACKAGING
+PANDUAN PEMASANGAN PATCH v5.8.5
+RESTORE MATERIAL & FINISHING VIEW + ORANGE ACTIVE TAB
+
+Baseline : v5.8.4
+Target   : v5.8.5
+Branch   : development
+
+PERUBAHAN:
+1. Tampilan Material & Finishing kembali seperti komposisi sebelum loader penuh.
+2. Card, panel detail, filter, dan trust strip tetap terlihat saat database disinkronkan.
+3. Loader empat kotak menjadi indikator compact dan tidak menutup satu layar.
+4. Tab aktif Material/Finishing berubah menjadi oranye.
+5. Berlaku konsisten pada desktop dan mobile.
+
+LANGKAH PEMASANGAN:
+
+1. Buka terminal VS Code:
+
+cd ~/projects/nexora-printing-packaging-final-v5.6
+git checkout development
+git pull origin development
+git status
+
+Pastikan:
+nothing to commit, working tree clean
+
+2. Backup:
+
+cd ~/projects
+cp -r nexora-printing-packaging-final-v5.6 \
+      nexora-printing-packaging-final-v5.6-backup-before-v5.8.5
+
+3. Ekstrak patch:
+nexora-v5.8.4-to-v5.8.5-restore-mf-orange-tab-patch.zip
+
+Salin seluruh isi patch ke:
+\\wsl.localhost\Ubuntu\home\firman\projects\nexora-printing-packaging-final-v5.6
+
+Pilih:
+Replace the files in the destination
+
+4. Jalankan QA:
+
+cd ~/projects/nexora-printing-packaging-final-v5.6
+npm run qa
+
+Target akhir:
+v5.8.5 UI verification PASS
+
+5. Commit dan push:
+
+git add .
+git commit -m "Restore material finishing view and use orange active tab"
+git push origin development
+
+6. Tunggu Vercel Preview berstatus READY.
+
+7. Periksa:
+- /material-finishing?type=material
+- /material-finishing?type=finishing
+- desktop dan mobile
+- card dan detail tetap terlihat saat sinkronisasi
+- tab aktif berwarna oranye
+
+8. Setelah Preview disetujui:
+
+git checkout main
+git pull origin main
+git merge development
+git push origin main
+
+Perubahan kemudian masuk ke:
+https://print.nexorabisnis.site

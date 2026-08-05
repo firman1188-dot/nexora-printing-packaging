@@ -13,7 +13,7 @@ if (home.includes('CREATIVE PRINT LAB')) {
 }
 
 for (const contract of [
-  '/assets/css/styles.css?v=5.8.4',
+  '/assets/css/styles.css?v=5.8.5',
   'class="home-page home-c1-final"'
 ]) {
   if (!home.includes(contract)) throw new Error(`Homepage belum memenuhi kontrak: ${contract}`);

@@ -1,3 +1,12 @@
+# v5.8.5 — Restore Material & Finishing View + Orange Active Tab
+
+- Mengembalikan komposisi Material & Finishing yang telah disetujui pada desktop dan mobile.
+- Data enrichment lokal dirender segera sehingga card, detail panel, dan trust strip tidak menghilang saat sinkronisasi database.
+- Loader empat kotak tetap berjalan sebagai indikator sinkronisasi kecil dan tidak lagi menutup tampilan penuh.
+- Tab aktif `Material` atau `Finishing` menggunakan warna oranye NEXORA.
+- Cache key asset dinaikkan ke v5.8.5.
+- QA build, integrasi publik, production readiness, v5.8.4, dan v5.8.5 PASS.
+
 # v5.8.4 — Database Loader & Single-Viewport Mobile Homepage
 
 - Menambahkan indikator loading empat kotak yang membesar dan mengecil berurutan searah jarum jam.

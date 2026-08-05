@@ -1,0 +1,44 @@
+NEXORA PRINTING & PACKAGING
+LAPORAN IMPLEMENTASI v5.8.5
+
+Judul      : Restore Material & Finishing View + Orange Active Tab
+Baseline   : v5.8.4
+Target     : v5.8.5
+Status     : BUILD PASS / QA PASS / READY FOR PREVIEW
+
+PERBAIKAN UTAMA
+
+1. RESTORE VIEW
+- Komposisi card, detail panel, filter, pagination, dan trust strip dipertahankan.
+- Data lokal enrichment dirender sebelum request public API selesai.
+- Desktop dan mobile tidak lagi menampilkan area kosong besar saat sinkronisasi.
+
+2. LOADER
+- Loader empat kotak searah jarum jam tetap tersedia.
+- Loader Material & Finishing menjadi compact overlay.
+- Loader tidak lagi menutup seluruh viewport.
+- Loader Portfolio tetap menggunakan perilaku v5.8.4.
+
+3. ACTIVE MODE
+- Tab aktif Material memakai oranye.
+- Tab aktif Finishing memakai oranye.
+- Inactive tab tetap putih/navy.
+- Berlaku pada desktop dan mobile.
+
+4. CACHE
+- CSS dan JavaScript menggunakan query version v5.8.5.
+
+HASIL QA
+
+Build                                : PASS
+General verification                 : PASS
+Portfolio verification               : PASS
+Material & Finishing verification    : PASS
+Public integration verification      : PASS
+Production readiness verification    : PASS
+v5.8.4 UI verification               : PASS
+v5.8.5 UI verification               : PASS
+
+CATATAN
+Patch harus diuji dahulu di branch development dan Vercel Preview sebelum
+digabung ke main/Production.

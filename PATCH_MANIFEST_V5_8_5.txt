@@ -1,0 +1,38 @@
+NEXORA PRINTING & PACKAGING
+PATCH MANIFEST v5.8.5
+
+Baseline : v5.8.4
+Target   : v5.8.5
+
+TUJUAN
+- Mengembalikan tampilan Material & Finishing yang telah disetujui.
+- Menjaga card/detail tetap tampil saat sinkronisasi database.
+- Mengubah tab aktif Material/Finishing menjadi oranye.
+
+FILES
+CHANGELOG.md
+INSTALLATION_GUIDE_V5_8_5_RESTORE_MF_ORANGE_TAB.txt
+NEXORA_IMPLEMENTATION_REPORT_v5.8.5.txt
+package.json
+scripts/verify-production-readiness.mjs
+scripts/verify-v5.8.4-ui.mjs
+scripts/verify-v5.8.5-ui.mjs
+src/assets/css/styles.css
+src/assets/js/material-finishing.js
+src/pages/404.html
+src/pages/index.html
+src/pages/kontak.html
+src/pages/material-finishing.html
+src/pages/portofolio.html
+dist/404.html
+dist/assets/css/styles.css
+dist/assets/js/material-finishing.js
+dist/index.html
+dist/kontak.html
+dist/material-finishing.html
+dist/portofolio.html
+
+QA TARGET
+- Production readiness verification PASS
+- v5.8.4 UI verification PASS
+- v5.8.5 UI verification PASS

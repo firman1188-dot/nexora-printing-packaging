@@ -1,19 +1,20 @@
 {
-  "name": "nexora-printing-packaging-v5-8-4-viewport-loader-refinement",
-  "version": "5.8.4",
+  "name": "nexora-printing-packaging-v5-8-5-material-view-restoration",
+  "version": "5.8.5",
   "private": true,
   "type": "module",
-  "description": "NEXORA Printing & Packaging \u2014 database loading indicator and single-viewport mobile homepage.",
+  "description": "NEXORA Printing & Packaging — restored Material & Finishing view with orange active mode.",
   "scripts": {
     "build": "node scripts/build.mjs",
     "dev": "node scripts/dev-server.mjs",
     "verify": "node scripts/verify.mjs",
-    "qa": "npm run build && npm run verify && npm run verify:portfolio && npm run verify:material && npm run verify:integration && npm run verify:readiness && npm run verify:ui584",
+    "qa": "npm run build && npm run verify && npm run verify:portfolio && npm run verify:material && npm run verify:integration && npm run verify:readiness && npm run verify:ui584 && npm run verify:ui585",
     "verify:portfolio": "node scripts/verify-portfolio.mjs",
     "verify:material": "node scripts/verify-material-finishing.mjs",
     "verify:integration": "node scripts/verify-public-integration.mjs",
     "verify:readiness": "node scripts/verify-production-readiness.mjs",
-    "verify:ui584": "node scripts/verify-v5.8.4-ui.mjs"
+    "verify:ui584": "node scripts/verify-v5.8.4-ui.mjs",
+    "verify:ui585": "node scripts/verify-v5.8.5-ui.mjs"
   },
   "engines": {
     "node": ">=18"

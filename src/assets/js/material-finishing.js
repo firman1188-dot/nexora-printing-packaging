@@ -380,17 +380,14 @@
   };
 
   const init = async () => {
-    setLoadingState(true, 'Memuat material dan finishing dari database');
     state.pageSize = resolvePageSize();
 
-    const [[data, portfolios]] = await Promise.all([
-      Promise.all([loadData(), loadPortfolio()]),
-      wait(minimumLoaderDuration)
-    ]);
-    state.data = data;
-    state.portfolios = portfolios;
+    // Restore the approved Material & Finishing layout immediately on both
+    // desktop and mobile. Local enrichment is rendered first while the public
+    // database refresh continues in the background.
+    state.data = localMasterData();
+    state.portfolios = normalizePortfolio(window.NEXORA_PORTFOLIO_DATA || {});
     applyUrl();
-    setLoadingState(false);
 
     elements.modeButtons.forEach((button) => button.addEventListener('click', () => {
       state.mode = button.dataset.mfMode;
@@ -417,6 +414,18 @@
       }, 120);
     });
 
+    render();
+    setLoadingState(true, 'Menyinkronkan material dan finishing');
+
+    const [[data, portfolios]] = await Promise.all([
+      Promise.all([loadData(), loadPortfolio()]),
+      wait(minimumLoaderDuration)
+    ]);
+
+    state.data = data;
+    state.portfolios = portfolios;
+    applyUrl();
+    setLoadingState(false);
     render();
   };
 
