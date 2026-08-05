@@ -1,4 +1,4 @@
-/** NEXORA Public Material & Finishing API v5.8.1 */
+/** NEXORA Public Material & Finishing API v5.8.2 */
 import { getPublicMasters, handlePublicError, publicEnvelope, requireGet, setPublicHeaders } from '../_lib/public-api.js';
 
 const materialGroups = [

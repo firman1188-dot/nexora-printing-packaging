@@ -1,4 +1,4 @@
-/** NEXORA Public Material Detail API v5.8.1 */
+/** NEXORA Public Material Detail API v5.8.2 */
 import {
   getAllActivePortfolios,
   getPublicMasters,

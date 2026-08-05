@@ -1,9 +1,9 @@
 {
-  "name": "nexora-printing-packaging-v5-8-1-production-readiness",
-  "version": "5.8.1",
+  "name": "nexora-printing-packaging-v5-8-2-header-cache-filter-calibration",
+  "version": "5.8.2",
   "private": true,
   "type": "module",
-  "description": "NEXORA Printing & Packaging — production readiness, unified shared header, and resilient Mobile Control public integration.",
+  "description": "NEXORA Printing & Packaging — shared header alignment, cache-safe release assets, and responsive filter icon calibration.",
   "scripts": {
     "build": "node scripts/build.mjs",
     "dev": "node scripts/dev-server.mjs",

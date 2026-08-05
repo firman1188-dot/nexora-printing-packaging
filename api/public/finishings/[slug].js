@@ -1,4 +1,4 @@
-/** NEXORA Public Finishing Detail API v5.8.1 */
+/** NEXORA Public Finishing Detail API v5.8.2 */
 import {
   getAllActivePortfolios,
   getPublicMasters,

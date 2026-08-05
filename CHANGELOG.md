@@ -1,5 +1,14 @@
 # Changelog
 
+## v5.8.2 — Header Alignment, Cache Safety & Responsive Filter Icons
+
+- Menyamakan sumbu header desktop seluruh halaman ke container 1480 px.
+- Menyamakan posisi logo, navigasi, dan tombol Konsultasi dengan konten halaman.
+- Menambahkan version query `?v=5.8.2` pada CSS dan JavaScript untuk mencegah tampilan lama akibat cache immutable.
+- Mengubah cache CSS/JS menjadi `must-revalidate`; image/brand/icon tetap immutable.
+- Memperkecil ikon filter Portofolio serta Material & Finishing dengan ukuran responsif berbasis `clamp()`.
+- Menaikkan envelope API ke v5.8.2 tanpa mengubah kontrak data.
+
 ## v5.8.1 — Production Readiness & Shared Header
 - Menyamakan markup, tinggi, posisi logo, lebar container, navigasi, tombol, sticky behavior, dan hamburger header pada seluruh halaman.
 - Menghapus geometri header khusus Homepage yang menyebabkan posisi berbeda dari Portofolio dan Material & Finishing.

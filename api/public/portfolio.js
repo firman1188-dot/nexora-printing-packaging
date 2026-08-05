@@ -1,4 +1,4 @@
-/** NEXORA Public Portfolio API v5.8.1 */
+/** NEXORA Public Portfolio API v5.8.2 */
 import {
   filterPortfolios,
   getAllActivePortfolios,

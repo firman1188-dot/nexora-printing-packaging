@@ -1,0 +1,27 @@
+NEXORA PRINTING & PACKAGING
+PANDUAN PATCH v5.8.2 — HEADER, CACHE, DAN FILTER ICON
+
+Baseline : v5.8.1
+Target   : v5.8.2
+Branch   : development
+
+PERUBAHAN:
+1. Header desktop seluruh halaman memakai container 1480 px yang sama.
+2. CSS/JS memakai URL versi v5.8.2 agar browser tidak mempertahankan tampilan lama.
+3. Cache CSS/JS wajib revalidate.
+4. Ikon filter Portofolio dan Material/Finishing diperkecil secara responsif.
+
+PEMASANGAN:
+1. Backup folder aktif.
+2. Timpa seluruh isi patch ke root project.
+3. Jalankan: npm run qa
+4. Commit dan push branch development.
+5. Tunggu Preview READY. Tidak perlu redeploy deployment lama setelah push baru.
+6. Lakukan hard refresh satu kali: Ctrl+Shift+R.
+7. Periksa /, /portofolio, /material-finishing, /kontak.
+
+TARGET QA:
+- Posisi logo/header sama pada seluruh halaman.
+- Header sejajar dengan konten utama.
+- Ikon filter lebih kecil dan proporsional pada 1024, 1280, 1440, serta mobile.
+- CSS response tidak lagi immutable.

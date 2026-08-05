@@ -1,0 +1,17 @@
+NEXORA PRINTING & PACKAGING
+IMPLEMENTATION REPORT v5.8.2
+
+STATUS: SOURCE IMPLEMENTED — QA PENDING EXECUTION
+
+ROOT CAUSE YANG DITEMUKAN:
+Deployment baru sudah memuat CSS v5.8.1, tetapi browser pada alias Preview dapat mempertahankan /assets/css/styles.css lama karena header cache 1 tahun + immutable. Akibatnya Homepage masih memakai container header lama 1480 px, sedangkan halaman internal memakai header full-width lama.
+
+PERBAIKAN:
+- Header bersama dikunci ke container 1480 px.
+- Semua halaman memakai styles.css?v=5.8.2 dan JavaScript ?v=5.8.2.
+- CSS/JS memakai Cache-Control must-revalidate.
+- Ikon filter Portofolio dan Material/Finishing diperkecil dengan clamp responsif.
+- Gambar tetap memakai cache immutable.
+
+CATATAN:
+Setelah push, gunakan deployment Preview dari commit v5.8.2. Jangan redeploy commit v5.8.1.

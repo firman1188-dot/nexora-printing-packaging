@@ -3707,3 +3707,65 @@ body.contact-page {
     padding-inline: 18px;
   }
 }
+
+/* ========================================================================== 
+   NEXORA v5.8.2 — HEADER ALIGNMENT, CACHE-SAFE RELEASE & FILTER CALIBRATION
+   LOCKED:
+   - Header desktop aligns to the same 1480 px content axis on every page.
+   - CSS/JS release URLs are versioned to prevent stale Preview/Production UI.
+   - Portfolio and Material/Finishing filter icons scale down with viewport.
+   ========================================================================== */
+@media (min-width: 900px) {
+  .site-header .header-shell,
+  .home-c1-final .header-shell {
+    width: min(1480px, calc(100% - 72px));
+    max-width: 1480px;
+    margin-inline: auto;
+    padding-inline: 0;
+  }
+
+  .portfolio-page .portfolio-filter-icon {
+    width: clamp(24px, 1.65vw, 30px);
+    height: clamp(24px, 1.65vw, 30px);
+  }
+  .portfolio-page .portfolio-filter {
+    gap: clamp(3px, .4vw, 5px);
+    padding-inline: clamp(5px, .6vw, 9px);
+  }
+
+  .material-finishing-page .mf-filter-icon {
+    width: clamp(22px, 1.5vw, 28px);
+    height: clamp(22px, 1.5vw, 28px);
+  }
+  .material-finishing-page .mf-filter {
+    gap: clamp(3px, .38vw, 5px);
+    padding-inline: clamp(5px, .55vw, 8px);
+  }
+}
+
+@media (min-width: 900px) and (max-width: 1180px) {
+  .site-header .header-shell,
+  .home-c1-final .header-shell {
+    width: calc(100% - 40px);
+  }
+  .portfolio-page .portfolio-filter-icon {
+    width: 24px;
+    height: 24px;
+  }
+  .material-finishing-page .mf-filter-icon {
+    width: 22px;
+    height: 22px;
+  }
+}
+
+@media (max-width: 899px) {
+  .portfolio-page .portfolio-filter-icon {
+    width: clamp(23px, 6.8vw, 28px);
+    height: clamp(23px, 6.8vw, 28px);
+  }
+  .material-finishing-page .mf-filter-icon {
+    width: clamp(22px, 6.4vw, 27px);
+    height: clamp(22px, 6.4vw, 27px);
+  }
+}
+
