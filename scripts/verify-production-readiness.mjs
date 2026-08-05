@@ -54,8 +54,8 @@ if (!vercel.includes('public, max-age=0, must-revalidate')) {
 
 for (const page of ['index.html', 'portofolio.html', 'material-finishing.html', 'kontak.html']) {
   const html = await readFile(path.join(root, 'src/pages', page), 'utf8');
-  if (!html.includes('/assets/css/styles.css?v=5.8.8')) {
-    throw new Error(`${page}: cache-busting CSS v5.8.8 belum terpasang.`);
+  if (!html.includes('/assets/css/styles.css?v=5.8.9')) {
+    throw new Error(`${page}: cache-busting CSS v5.8.9 belum terpasang.`);
   }
 }
 

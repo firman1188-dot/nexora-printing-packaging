@@ -1,0 +1,79 @@
+NEXORA PRINTING & PACKAGING
+INSTALLATION GUIDE v5.8.9
+MATERIAL & FINISHING GRID ROW LOCK
+
+STATUS
+- Target branch: development
+- Production: jangan diubah sebelum Preview PASS
+- Baseline: v5.8.8
+
+AKAR MASALAH YANG DITEMUKAN
+Halaman Material & Finishing menggunakan CSS Grid:
+  grid-template-rows: auto auto 0 minmax(0, 1fr) auto
+
+Elemen status loading berada pada urutan ketiga. Setelah proses API selesai,
+JavaScript mengosongkan teks status. Aturan berikut kemudian aktif:
+  .mf-load-status:empty { display: none; }
+
+Karena elemen status dikeluarkan dari layout, CSS Grid melakukan auto-placement ulang:
+- workspace berpindah ke row ketiga yang tingginya 0;
+- trust strip berpindah ke row keempat dan membesar memenuhi sisa layar.
+
+Gejalanya persis:
+- card dan panel detail sempat terlihat;
+- setelah sinkronisasi selesai, card dan detail menghilang;
+- bagian keunggulan membesar memenuhi ruang kosong.
+
+PERBAIKAN v5.8.9
+- Heading dikunci ke grid row 1.
+- Filter dikunci ke grid row 2.
+- Status dikunci ke grid row 3.
+- Workspace dikunci ke grid row 4.
+- Trust strip dikunci ke grid row 5.
+- Status kosong tetap berada dalam alur grid dengan visibility:hidden.
+- Tab aktif Material/Finishing tetap berwarna oranye.
+- API, database, katalog, dan JavaScript Material/Finishing tidak diubah.
+
+LANGKAH PEMASANGAN
+1. Buka terminal WSL:
+   cd ~/projects/nexora-printing-packaging-final-v5.6
+   git checkout development
+   git pull origin development
+   git status
+
+2. Pastikan working tree clean.
+
+3. Backup:
+   cd ~/projects
+   cp -r nexora-printing-packaging-final-v5.6 \
+     nexora-printing-packaging-final-v5.6-backup-before-v5.8.9
+
+4. Ekstrak patch v5.8.9.
+
+5. Salin seluruh isi patch ke:
+   \\wsl.localhost\Ubuntu\home\firman\projects\nexora-printing-packaging-final-v5.6
+
+6. Pilih Replace the files in the destination.
+
+7. Jalankan QA:
+   cd ~/projects/nexora-printing-packaging-final-v5.6
+   npm run qa
+
+8. Target akhir:
+   v5.8.9 UI verification PASS
+
+9. Commit dan push:
+   git add .
+   git commit -m "Lock Material Finishing grid rows after async load"
+   git push origin development
+
+10. Tunggu deployment Preview baru berstatus Ready.
+
+11. Uji:
+   /material-finishing?type=material&id=ivory-300-gsm
+   /material-finishing?type=finishing&id=laminasi-doff
+
+12. Tunggu minimal 10 detik pada masing-masing halaman.
+    Pastikan card dan panel detail tidak menghilang setelah API selesai.
+
+13. Hanya setelah Preview PASS, merge ke main.

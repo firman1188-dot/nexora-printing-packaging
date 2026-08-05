@@ -4290,3 +4290,21 @@ body.contact-page {
   background: var(--orange);
   box-shadow: inset 0 0 0 1px rgba(255,255,255,.12);
 }
+
+
+/* ==========================================================================
+   NEXORA v5.8.9 — MATERIAL & FINISHING GRID ROW LOCK
+   FIX:
+   - Keep the hidden status row in the CSS grid flow.
+   - Prevent workspace/trust-strip from shifting after async status clears.
+   ========================================================================== */
+.material-finishing-page .mf-page-heading { grid-row: 1; }
+.material-finishing-page .mf-filter-bar { grid-row: 2; }
+.material-finishing-page .mf-load-status { grid-row: 3; }
+.material-finishing-page .mf-load-status:empty {
+  display: block;
+  visibility: hidden;
+  pointer-events: none;
+}
+.material-finishing-page .mf-workspace { grid-row: 4; }
+.material-finishing-page .mf-trust-strip { grid-row: 5; }

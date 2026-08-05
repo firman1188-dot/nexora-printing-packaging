@@ -1,0 +1,28 @@
+NEXORA v5.8.9 PATCH MANIFEST
+Baseline: v5.8.8
+Purpose: lock Material/Finishing CSS Grid rows after async status clears.
+
+CHANGED SOURCE
+- src/assets/css/styles.css
+- src/pages/index.html
+- src/pages/404.html
+- src/pages/portofolio.html
+- src/pages/material-finishing.html
+- src/pages/kontak.html
+- scripts/verify-production-readiness.mjs
+- scripts/verify-v5.8.9-ui.mjs
+- package.json
+- CHANGELOG.md
+
+GENERATED DIST
+- dist/assets/css/styles.css
+- dist/index.html
+- dist/404.html
+- dist/portofolio.html
+- dist/material-finishing.html
+- dist/kontak.html
+
+DOCUMENTATION
+- INSTALLATION_GUIDE_V5_8_9_MF_GRID_ROW_LOCK.txt
+- NEXORA_IMPLEMENTATION_REPORT_v5.8.9.txt
+- PATCH_MANIFEST_V5_8_9.txt

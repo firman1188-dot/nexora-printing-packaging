@@ -1,0 +1,47 @@
+NEXORA PRINTING & PACKAGING
+IMPLEMENTATION REPORT v5.8.9
+MATERIAL & FINISHING GRID ROW LOCK
+
+RINGKASAN
+Perbaikan ini menangani hilangnya card dan panel detail Material & Finishing
+beberapa saat setelah halaman dibuka.
+
+DIAGNOSIS FINAL
+Masalah bukan berasal dari:
+- database;
+- endpoint API;
+- cache browser;
+- data Material/Finishing;
+- source JavaScript produksi.
+
+Masalah berasal dari interaksi CSS Grid dan status loading kosong.
+Ketika .mf-load-status menjadi kosong dan display:none, seluruh child grid
+diauto-place ulang. Workspace masuk ke row 0-height dan menghilang, sedangkan
+trust strip masuk ke row flexible dan membesar.
+
+IMPLEMENTASI
+1. Menetapkan grid-row eksplisit untuk lima bagian mf-shell.
+2. Menjaga node status kosong tetap berada dalam grid flow.
+3. Menaikkan cache-busting asset ke v5.8.9.
+4. Mempertahankan runtime dan katalog Material/Finishing v5.8.8.
+5. Mempertahankan tab aktif warna oranye.
+
+DAMPAK
+- Card Material tetap tampil setelah API selesai.
+- Card Finishing tetap tampil setelah API selesai.
+- Panel detail kanan tetap tampil.
+- Trust strip kembali pada tinggi normal.
+- Desktop dan mobile tidak mengalami perubahan struktur data.
+
+QA
+- Build PASS
+- General verification PASS
+- Portfolio verification PASS
+- Material & Finishing verification PASS
+- Public integration verification PASS
+- Production readiness verification PASS
+- v5.8.9 UI verification PASS
+
+PRODUCTION POLICY
+Belum boleh merge ke main sebelum Preview diperiksa sekurang-kurangnya 10 detik
+pada mode Material dan Finishing.

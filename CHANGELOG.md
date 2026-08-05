@@ -105,3 +105,10 @@
 - Preserved the database loader for Portfolio and the single-viewport mobile Homepage.
 - Changed only the active Material/Finishing mode color from navy to NEXORA orange.
 - Bumped all public asset references to v5.8.8 to eliminate stale browser cache.
+
+
+## v5.8.9 — Material & Finishing Grid Row Lock
+- Fix CSS Grid auto-placement after `.mf-load-status` becomes empty.
+- Lock heading/filter/status/workspace/trust-strip to rows 1–5.
+- Preserve Production Material & Finishing cards and detail panel after API completion.
+- Keep active Material/Finishing tab orange.

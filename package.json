@@ -1,20 +1,21 @@
 {
-  "name": "nexora-printing-packaging-v5-8-8-production-mf-restoration",
-  "version": "5.8.8",
+  "name": "nexora-printing-packaging-v5-8-9-mf-grid-row-lock",
+  "version": "5.8.9",
   "private": true,
   "type": "module",
-  "description": "NEXORA Printing & Packaging \u2014 exact Production Material/Finishing restoration with orange active mode.",
+  "description": "NEXORA Printing & Packaging \u2014 fixes Material/Finishing async grid row collapse while preserving Production rendering.",
   "scripts": {
     "build": "node scripts/build.mjs",
     "dev": "node scripts/dev-server.mjs",
     "verify": "node scripts/verify.mjs",
-    "qa": "npm run build && npm run verify && npm run verify:portfolio && npm run verify:material && npm run verify:integration && npm run verify:readiness && npm run verify:ui588",
+    "qa": "npm run build && npm run verify && npm run verify:portfolio && npm run verify:material && npm run verify:integration && npm run verify:readiness && npm run verify:ui589",
     "verify:portfolio": "node scripts/verify-portfolio.mjs",
     "verify:material": "node scripts/verify-material-finishing.mjs",
     "verify:integration": "node scripts/verify-public-integration.mjs",
     "verify:readiness": "node scripts/verify-production-readiness.mjs",
     "verify:ui584": "node scripts/verify-v5.8.4-ui.mjs",
-    "verify:ui588": "node scripts/verify-v5.8.8-ui.mjs"
+    "verify:ui588": "node scripts/verify-v5.8.8-ui.mjs",
+    "verify:ui589": "node scripts/verify-v5.8.9-ui.mjs"
   },
   "engines": {
     "node": ">=18"
