@@ -10,7 +10,7 @@ const checks = [
   ['material API empty fallback', /const materials = hasItems\(apiMaterials\)[\s\S]*?: local\.materials;/],
   ['finishing API empty fallback', /const finishings = hasItems\(apiFinishings\)[\s\S]*?: local\.finishings;/],
   ['orange active mode', /\.mf-mode-switch button\.active\s*\{[\s\S]*?background:\s*var\(--orange\)/],
-  ['v5.8.6 asset version', /material-finishing\.js\?v=5\.8\.6/]
+  ['v5.8.7 asset version', /material-finishing\.js\?v=5\.8\.7/]
 ];
 
 for (const [label, pattern] of checks) {
@@ -21,4 +21,4 @@ for (const [label, pattern] of checks) {
   }
 }
 
-console.log('v5.8.6 UI verification PASS');
+console.log('v5.8.7 fallback verification PASS');

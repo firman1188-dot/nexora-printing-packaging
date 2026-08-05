@@ -79,6 +79,33 @@
 
   const localMasterData = () => window.NEXORA_MATERIAL_FINISHING_DATA || { materials: [], finishings: [], material_groups: [], finishing_groups: [] };
 
+  const isItemActive = (item = {}) => {
+    const rawStatus = item.status ?? item.active ?? 'ACTIVE';
+    const normalized = String(rawStatus).trim().toUpperCase();
+    return !['INACTIVE', 'FALSE', '0', 'ARCHIVED', 'DELETED'].includes(normalized);
+  };
+
+  const ensureRenderableData = (candidate) => {
+    const local = localMasterData();
+    const source = candidate || {};
+    const materials = Array.isArray(source.materials) && source.materials.some(isItemActive)
+      ? source.materials
+      : local.materials;
+    const finishings = Array.isArray(source.finishings) && source.finishings.some(isItemActive)
+      ? source.finishings
+      : local.finishings;
+    return {
+      material_groups: Array.isArray(source.material_groups) && source.material_groups.length
+        ? source.material_groups
+        : local.material_groups,
+      finishing_groups: Array.isArray(source.finishing_groups) && source.finishing_groups.length
+        ? source.finishing_groups
+        : local.finishing_groups,
+      materials,
+      finishings
+    };
+  };
+
   const hasItems = (value) => Array.isArray(value) && value.length > 0;
   const findLocal = (items, idKeyName, slugKeyName, apiItem) => items.find((item) =>
     (apiItem[idKeyName] && item[idKeyName] === apiItem[idKeyName]) ||
@@ -155,7 +182,7 @@
   };
 
   const activeItems = () => itemsForMode()
-    .filter((item) => String(item.status || 'ACTIVE').toUpperCase() === 'ACTIVE')
+    .filter(isItemActive)
     .filter((item) => state.group === 'all' || item[groupKey()] === state.group)
     .sort((a, b) => Number(a.display_order || 9999) - Number(b.display_order || 9999));
 
@@ -395,7 +422,7 @@
     // Restore the approved Material & Finishing layout immediately on both
     // desktop and mobile. Local enrichment is rendered first while the public
     // database refresh continues in the background.
-    state.data = localMasterData();
+    state.data = ensureRenderableData(localMasterData());
     state.portfolios = normalizePortfolio(window.NEXORA_PORTFOLIO_DATA || {});
     applyUrl();
 
@@ -432,7 +459,7 @@
       wait(minimumLoaderDuration)
     ]);
 
-    state.data = data;
+    state.data = ensureRenderableData(data);
     state.portfolios = portfolios;
     applyUrl();
     setLoadingState(false);

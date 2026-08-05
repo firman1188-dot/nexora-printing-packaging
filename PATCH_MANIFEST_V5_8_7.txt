@@ -1,0 +1,25 @@
+NEXORA v5.8.7 PATCH MANIFEST
+
+CHANGELOG.md
+INSTALLATION_GUIDE_V5_8_7_MF_RENDER_RESTORATION.txt
+NEXORA_IMPLEMENTATION_REPORT_v5.8.7.txt
+dist/404.html
+dist/assets/css/styles.css
+dist/assets/js/material-finishing.js
+dist/index.html
+dist/kontak.html
+dist/material-finishing.html
+dist/portofolio.html
+package.json
+scripts/verify-production-readiness.mjs
+scripts/verify-v5.8.4-ui.mjs
+scripts/verify-v5.8.5-ui.mjs
+scripts/verify-v5.8.6-ui.mjs
+scripts/verify-v5.8.7-ui.mjs
+src/assets/css/styles.css
+src/assets/js/material-finishing.js
+src/pages/404.html
+src/pages/index.html
+src/pages/kontak.html
+src/pages/material-finishing.html
+src/pages/portofolio.html

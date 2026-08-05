@@ -1,3 +1,13 @@
+# NEXORA Printing & Packaging — Changelog
+
+## v5.8.7 — Material & Finishing Render Restoration
+
+- Memaksa asset browser memakai versi baru `5.8.7` agar JavaScript lama tidak tersimpan dari Preview sebelumnya.
+- Menambahkan hard data guard: bila respons API tidak memiliki item aktif, katalog lokal resmi tetap dipakai.
+- Menormalkan status `ACTIVE`, `TRUE`, boolean, dan nilai aktif lainnya.
+- Menjaga card library dan panel detail selalu visible selama sinkronisasi.
+- Mempertahankan tab aktif Material/Finishing berwarna oranye.
+
 # v5.8.5 — Restore Material & Finishing View + Orange Active Tab
 
 - Mengembalikan komposisi Material & Finishing yang telah disetujui pada desktop dan mobile.

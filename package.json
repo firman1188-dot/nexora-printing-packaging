@@ -1,21 +1,22 @@
 {
-  "name": "nexora-printing-packaging-v5-8-6-material-data-fallback",
-  "version": "5.8.6",
+  "name": "nexora-printing-packaging-v5-8-7-mf-render-restoration",
+  "version": "5.8.7",
   "private": true,
   "type": "module",
-  "description": "NEXORA Printing & Packaging \u2014 reliable Material & Finishing data fallback with orange active mode.",
+  "description": "NEXORA Printing & Packaging — restored Material & Finishing rendering with cache-busted assets and hard data guard.",
   "scripts": {
     "build": "node scripts/build.mjs",
     "dev": "node scripts/dev-server.mjs",
     "verify": "node scripts/verify.mjs",
-    "qa": "npm run build && npm run verify && npm run verify:portfolio && npm run verify:material && npm run verify:integration && npm run verify:readiness && npm run verify:ui584 && npm run verify:ui585 && npm run verify:ui586",
+    "qa": "npm run build && npm run verify && npm run verify:portfolio && npm run verify:material && npm run verify:integration && npm run verify:readiness && npm run verify:ui584 && npm run verify:ui585 && npm run verify:ui586 && npm run verify:ui587",
     "verify:portfolio": "node scripts/verify-portfolio.mjs",
     "verify:material": "node scripts/verify-material-finishing.mjs",
     "verify:integration": "node scripts/verify-public-integration.mjs",
     "verify:readiness": "node scripts/verify-production-readiness.mjs",
     "verify:ui584": "node scripts/verify-v5.8.4-ui.mjs",
     "verify:ui585": "node scripts/verify-v5.8.5-ui.mjs",
-    "verify:ui586": "node scripts/verify-v5.8.6-ui.mjs"
+    "verify:ui586": "node scripts/verify-v5.8.6-ui.mjs",
+    "verify:ui587": "node scripts/verify-v5.8.7-ui.mjs"
   },
   "engines": {
     "node": ">=18"

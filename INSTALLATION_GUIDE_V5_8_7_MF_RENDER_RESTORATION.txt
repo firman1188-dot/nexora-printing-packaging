@@ -1,0 +1,11 @@
+NEXORA PRINTING & PACKAGING v5.8.7
+PANDUAN PEMASANGAN MATERIAL & FINISHING RENDER RESTORATION
+
+1. Pasang patch pada branch development dan pilih Replace All.
+2. Jalankan: npm run qa
+3. Commit: git add . && git commit -m "Restore material finishing rendering and bust stale assets"
+4. Push: git push origin development
+5. Tunggu Preview Vercel READY.
+6. Buka dengan Ctrl+Shift+R satu kali.
+7. Pastikan card Material, card Finishing, dan panel detail tampil.
+8. Merge ke main hanya setelah Preview PASS.

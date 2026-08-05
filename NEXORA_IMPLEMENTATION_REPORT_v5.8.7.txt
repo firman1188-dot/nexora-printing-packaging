@@ -1,0 +1,16 @@
+NEXORA PRINTING & PACKAGING
+IMPLEMENTATION REPORT v5.8.7
+
+Masalah terkonfirmasi:
+- Source JavaScript sudah diperbaiki, tetapi HTML Preview masih memanggil asset dengan query versi v5.8.5.
+- Browser dapat mempertahankan asset lama sehingga perbaikan v5.8.6 tidak terlihat konsisten.
+
+Perbaikan:
+- Semua asset HTML dibump ke ?v=5.8.7.
+- Hard data guard memastikan katalog lokal resmi dipakai bila API kosong/tidak memiliki item aktif.
+- Status aktif dinormalisasi.
+- Workspace, card grid, dan detail panel dikunci visible.
+- Tab aktif tetap oranye.
+
+Target:
+- Tampilan Material & Finishing sama seperti Production v5.8.3, ditambah tab aktif oranye.
