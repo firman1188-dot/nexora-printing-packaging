@@ -60,51 +60,7 @@
   };
 
   const fallbackImage = '/assets/images/material-finishing/sample-fallback.svg';
-  const minimumLoaderDuration = 420;
-  const loaderMarkup = (label) => `
-    <span class="nexora-data-loader" aria-hidden="true">
-      <i></i><i></i><i></i><i></i>
-    </span>
-    <span class="nexora-data-loader-label">${escapeHtml(label)}</span>`;
-
-  const setLoadingState = (loading, label = '') => {
-    root.classList.toggle('is-data-loading', loading);
-    root.setAttribute('aria-busy', String(loading));
-    elements.status.classList.toggle('is-loading', loading);
-    elements.status.classList.remove('is-error');
-    elements.status.innerHTML = loading ? loaderMarkup(label) : '';
-  };
-
-  const wait = (ms) => new Promise((resolve) => window.setTimeout(resolve, ms));
-
   const localMasterData = () => window.NEXORA_MATERIAL_FINISHING_DATA || { materials: [], finishings: [], material_groups: [], finishing_groups: [] };
-
-  const isItemActive = (item = {}) => {
-    const rawStatus = item.status ?? item.active ?? 'ACTIVE';
-    const normalized = String(rawStatus).trim().toUpperCase();
-    return !['INACTIVE', 'FALSE', '0', 'ARCHIVED', 'DELETED'].includes(normalized);
-  };
-
-  const ensureRenderableData = (candidate) => {
-    const local = localMasterData();
-    const source = candidate || {};
-    const materials = Array.isArray(source.materials) && source.materials.some(isItemActive)
-      ? source.materials
-      : local.materials;
-    const finishings = Array.isArray(source.finishings) && source.finishings.some(isItemActive)
-      ? source.finishings
-      : local.finishings;
-    return {
-      material_groups: Array.isArray(source.material_groups) && source.material_groups.length
-        ? source.material_groups
-        : local.material_groups,
-      finishing_groups: Array.isArray(source.finishing_groups) && source.finishing_groups.length
-        ? source.finishing_groups
-        : local.finishing_groups,
-      materials,
-      finishings
-    };
-  };
 
   const hasItems = (value) => Array.isArray(value) && value.length > 0;
   const findLocal = (items, idKeyName, slugKeyName, apiItem) => items.find((item) =>
@@ -145,26 +101,16 @@
     display_order: Number(apiItem.display_order ?? apiItem.sort_order ?? local?.display_order ?? 9999)
   });
 
-  // Preserve the approved local catalogue when a Preview API responds successfully
-  // but returns an empty collection. This prevents the cards/detail panel from
-  // being cleared while Production or Preview master data is still being prepared.
   const mergeApiData = (payload) => {
     const api = payload?.data || payload || {};
     const local = localMasterData();
     const apiMaterials = Array.isArray(api.materials) ? api.materials : [];
     const apiFinishings = Array.isArray(api.finishings) ? api.finishings : [];
-    const materials = hasItems(apiMaterials)
-      ? apiMaterials.map((item) => mergeMaterial(item, findLocal(local.materials, 'material_id', 'material_slug', item)))
-      : local.materials;
-    const finishings = hasItems(apiFinishings)
-      ? apiFinishings.map((item) => mergeFinishing(item, findLocal(local.finishings, 'finishing_id', 'finishing_slug', item)))
-      : local.finishings;
-
     return {
       material_groups: hasItems(api.material_groups) ? api.material_groups : local.material_groups,
       finishing_groups: hasItems(api.finishing_groups) ? api.finishing_groups : local.finishing_groups,
-      materials,
-      finishings
+      materials: apiMaterials.map((item) => mergeMaterial(item, findLocal(local.materials, 'material_id', 'material_slug', item))),
+      finishings: apiFinishings.map((item) => mergeFinishing(item, findLocal(local.finishings, 'finishing_id', 'finishing_slug', item)))
     };
   };
 
@@ -182,7 +128,7 @@
   };
 
   const activeItems = () => itemsForMode()
-    .filter(isItemActive)
+    .filter((item) => String(item.status || 'ACTIVE').toUpperCase() === 'ACTIVE')
     .filter((item) => state.group === 'all' || item[groupKey()] === state.group)
     .sort((a, b) => Number(a.display_order || 9999) - Number(b.display_order || 9999));
 
@@ -417,14 +363,12 @@
   };
 
   const init = async () => {
+    elements.status.textContent = 'Memuat sampel…';
     state.pageSize = resolvePageSize();
-
-    // Restore the approved Material & Finishing layout immediately on both
-    // desktop and mobile. Local enrichment is rendered first while the public
-    // database refresh continues in the background.
-    state.data = ensureRenderableData(localMasterData());
-    state.portfolios = normalizePortfolio(window.NEXORA_PORTFOLIO_DATA || {});
+    state.data = await loadData();
+    state.portfolios = await loadPortfolio();
     applyUrl();
+    elements.status.textContent = '';
 
     elements.modeButtons.forEach((button) => button.addEventListener('click', () => {
       state.mode = button.dataset.mfMode;
@@ -452,26 +396,10 @@
     });
 
     render();
-    setLoadingState(true, 'Menyinkronkan material dan finishing');
-
-    const [[data, portfolios]] = await Promise.all([
-      Promise.all([loadData(), loadPortfolio()]),
-      wait(minimumLoaderDuration)
-    ]);
-
-    state.data = ensureRenderableData(data);
-    state.portfolios = portfolios;
-    applyUrl();
-    setLoadingState(false);
-    render();
   };
 
   init().catch((error) => {
     console.error(error);
-    root.classList.remove('is-data-loading');
-    root.setAttribute('aria-busy', 'false');
-    elements.status.classList.remove('is-loading');
-    elements.status.classList.add('is-error');
     elements.status.innerHTML = '<strong>Material & Finishing gagal dimuat.</strong>';
   });
 })();

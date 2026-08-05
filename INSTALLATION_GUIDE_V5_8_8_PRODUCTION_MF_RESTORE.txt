@@ -1,0 +1,18 @@
+NEXORA v5.8.8 — INSTALLATION GUIDE
+
+1. cd ~/projects/nexora-printing-packaging-final-v5.6
+2. git checkout development
+3. git pull origin development
+4. Pastikan: nothing to commit, working tree clean
+5. Buat backup folder aktif.
+6. Ekstrak patch v5.8.8 dan timpa seluruh isinya ke folder project.
+7. Jalankan: npm run qa
+8. Jalankan:
+   git add .
+   git commit -m "Restore Material Finishing from production baseline"
+   git push origin development
+9. Tunggu Preview Vercel Ready.
+10. Uji:
+    /material-finishing?type=material&id=ivory-300-gsm
+    /material-finishing?type=finishing&id=laminasi-doff
+11. Jangan merge ke main sebelum card dan panel detail tampil lengkap.

@@ -97,3 +97,11 @@
 - Fallback lokal hanya digunakan per mode yang kosong dan tidak mengubah data API yang valid.
 - Tab aktif Material/Finishing tetap menggunakan warna oranye NEXORA.
 - Asset cache key diperbarui ke `v=5.8.6`.
+
+## v5.8.8 — Production Material/Finishing Restoration
+- Restored `material-finishing.js` directly from the approved Production v5.8.3 baseline.
+- Restored the approved Material & Finishing local catalogue from Production.
+- Removed experimental render-first/loading modifications from the Material & Finishing page.
+- Preserved the database loader for Portfolio and the single-viewport mobile Homepage.
+- Changed only the active Material/Finishing mode color from navy to NEXORA orange.
+- Bumped all public asset references to v5.8.8 to eliminate stale browser cache.

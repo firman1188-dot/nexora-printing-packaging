@@ -1,0 +1,28 @@
+NEXORA PRINTING & PACKAGING
+PATCH MANIFEST v5.8.8
+
+Baseline : v5.8.7 development
+Target   : v5.8.8 development preview
+Purpose  : Restore Material & Finishing exactly from currently published Production v5.8.3.
+
+CORE FILES
+- src/assets/js/material-finishing.js
+- src/assets/js/material-finishing-data.js
+- src/assets/css/styles.css
+- src/pages/*.html
+- scripts/verify-v5.8.8-ui.mjs
+- package.json
+- CHANGELOG.md
+
+GENERATED BUILD FILES
+- dist/assets/js/material-finishing.js
+- dist/assets/js/material-finishing-data.js
+- dist/assets/css/styles.css
+- dist/*.html
+
+LOCKED RESULT
+- Material and Finishing cards visible.
+- Right-side detail preview visible.
+- Specifications, characteristics, suitable uses, notes, related production and actions visible.
+- Desktop and mobile use the currently published Production composition.
+- Active Material/Finishing mode uses orange.
