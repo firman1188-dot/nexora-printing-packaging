@@ -5,12 +5,11 @@ window.NEXORA_CONFIG = {
   address: 'Bandung, Jawa Barat',
   mapUrl: 'https://maps.google.com/?q=Bandung%2C%20Jawa%20Barat',
 
-  // Kosongkan untuk memakai data demo lokal di portfolio-data.js.
-  // Saat Mobile Control/API siap, isi dengan endpoint JSON publik.
-  // Contoh: 'https://api.nexora.id/public/portfolio'
-  portfolioApiUrl: '',
+  // Same-origin Vercel Function. Jika server belum dikonfigurasi atau API gagal,
+  // frontend menggunakan data lokal hanya sebagai fallback teknis.
+  portfolioApiUrl: '/api/public/portfolio',
 
-  // Endpoint master Material & Finishing publik (opsional).
+  // Same-origin Vercel Function untuk Master Material & Finishing aktif.
   // Kontrak: { material_groups, finishing_groups, materials, finishings }
-  materialFinishingApiUrl: ''
+  materialFinishingApiUrl: '/api/public/material-finishing'
 };

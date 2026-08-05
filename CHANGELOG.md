@@ -23,3 +23,13 @@
 - menambahkan endpoint opsional `materialFinishingApiUrl`;
 - menambahkan verifikasi kontrak Material & Finishing;
 - menghapus file patch lama dari paket full source.
+
+## 5.8.0 — Mobile Control Public Read Integration
+
+- Added same-origin Vercel Functions for public Portfolio, Category, Material, and Finishing reads.
+- Added a strict read-action allowlist for existing Mobile Control v1.6.3 GAS actions.
+- Kept GAS URL and shared secret server-side through Vercel Environment Variables.
+- Connected website configuration to `/api/public/portfolio` and `/api/public/material-finishing`.
+- Added Mobile Control master data merging with safe local enrichment.
+- Added image fallback for master data without reference images.
+- Added integration QA verification and deployment documentation.

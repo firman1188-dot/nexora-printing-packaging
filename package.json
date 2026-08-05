@@ -1,16 +1,17 @@
 {
-  "name": "nexora-printing-packaging-v5-7-2-responsive-refinement",
-  "version": "5.7.2",
+  "name": "nexora-printing-packaging-v5-8-mobile-control-integration",
+  "version": "5.8.0",
   "private": true,
   "type": "module",
-  "description": "NEXORA Printing & Packaging — Vercel-ready with compact mobile navigation, fixed mobile detail actions, dynamic contact data, and refined desktop proportions.",
+  "description": "NEXORA Printing & Packaging — read-only Mobile Control integration through same-origin Vercel Functions.",
   "scripts": {
     "build": "node scripts/build.mjs",
     "dev": "node scripts/dev-server.mjs",
     "verify": "node scripts/verify.mjs",
-    "qa": "npm run build && npm run verify && npm run verify:portfolio && npm run verify:material",
+    "qa": "npm run build && npm run verify && npm run verify:portfolio && npm run verify:material && npm run verify:integration",
     "verify:portfolio": "node scripts/verify-portfolio.mjs",
-    "verify:material": "node scripts/verify-material-finishing.mjs"
+    "verify:material": "node scripts/verify-material-finishing.mjs",
+    "verify:integration": "node scripts/verify-public-integration.mjs"
   },
   "engines": {
     "node": ">=18"

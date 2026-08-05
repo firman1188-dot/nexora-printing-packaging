@@ -1,0 +1,298 @@
+NEXORA PRINTING & PACKAGING
+PANDUAN PEMASANGAN INTEGRASI MOBILE CONTROL v5.8.0
+
+Status  : INTEGRATION CANDIDATE
+Target  : Branch development / Vercel Preview
+Sumber  : Website v5.7.2 + Mobile Control v1.6.3
+Tanggal : 5 Agustus 2026
+
+======================================================================
+1. HASIL YANG DIBANGUN
+======================================================================
+
+Integrasi ini menambahkan API publik same-origin pada project website:
+
+GET /api/public/portfolio
+GET /api/public/portfolio/:slug
+GET /api/public/categories
+GET /api/public/materials
+GET /api/public/materials/:slug
+GET /api/public/finishings
+GET /api/public/finishings/:slug
+GET /api/public/material-finishing
+
+Browser website tidak memanggil Google Spreadsheet atau Google Apps Script
+secara langsung. Vercel Function memanggil backend dengan secret server-side,
+lalu hanya mengembalikan data publik yang telah disanitasi.
+
+Integrasi menggunakan read action Mobile Control v1.6.3 yang sudah tersedia:
+
+GET_PORTFOLIO_MASTERS
+LIST_PORTFOLIOS_PAGE
+GET_PORTFOLIO
+
+Tidak ada action tulis yang dibuka melalui website.
+
+======================================================================
+2. PERSIAPAN
+======================================================================
+
+Pastikan:
+
+- branch aktif: development;
+- working tree bersih;
+- source website sudah v5.7.2;
+- Vercel Preview project sudah terhubung ke branch development;
+- tersedia GAS Preview URL dan GAS Shared Secret melalui kanal aman;
+- Spreadsheet dan Drive yang dipakai adalah DEV/Preview.
+
+Jangan memakai secret Production untuk pengujian awal.
+
+======================================================================
+3. BACKUP
+======================================================================
+
+cd ~/projects
+
+cp -r nexora-printing-packaging-final-v5.6 \
+      nexora-printing-packaging-final-v5.6-backup-before-v5.8.0
+
+======================================================================
+4. PASANG PATCH
+======================================================================
+
+Ekstrak file patch v5.8.0.
+
+Salin seluruh isi patch ke:
+
+\\wsl.localhost\Ubuntu\home\firman\projects\nexora-printing-packaging-final-v5.6
+
+Pilih:
+
+Replace the files in the destination
+
+Patch tidak berisi secret dan tidak mengubah nomor WhatsApp/email publik yang
+sudah dikonfigurasi.
+
+======================================================================
+5. BUILD DAN QA
+======================================================================
+
+cd ~/projects/nexora-printing-packaging-final-v5.6
+npm run qa
+
+Hasil yang diharapkan:
+
+Build complete
+Verification PASS
+Portfolio verification PASS
+Material & Finishing verification PASS
+Public integration verification PASS
+
+======================================================================
+6. KONFIGURASI VERCEL PREVIEW
+======================================================================
+
+Buka:
+
+Vercel
+→ Project nexora-printing-packaging
+→ Settings
+→ Environment Variables
+
+Tambahkan untuk environment Preview:
+
+GAS_WEB_APP_URL
+Nilai: URL deployment Google Apps Script DEV/Preview
+
+GAS_SHARED_SECRET
+Nilai: shared secret Preview dari Mobile Control
+
+NEXORA_CLIENT_ID
+Nilai: NEXORA-PRINT-001
+
+NEXORA_ENVIRONMENT
+Nilai: preview
+
+NEXORA_PUBLIC_READER_ROLE
+Nilai: OWNER
+
+NEXORA_PUBLIC_READER_USER_ID
+Nilai: WEBSITE_PUBLIC
+
+PUBLIC_API_S_MAXAGE
+Nilai: 60
+
+PUBLIC_API_STALE_WHILE_REVALIDATE
+Nilai: 300
+
+GAS_REQUEST_TIMEOUT_MS
+Nilai: 15000
+
+PENTING:
+
+- Jangan menulis nilai secret di site-config.js.
+- Jangan commit file .env berisi nilai asli.
+- Variabel Preview dan Production harus berbeda.
+- GAS_WEB_APP_URL harus deployment Preview, bukan URL editor Apps Script.
+
+======================================================================
+7. PUSH BRANCH DEVELOPMENT
+======================================================================
+
+cd ~/projects/nexora-printing-packaging-final-v5.6
+
+git checkout development
+git status
+git add .
+git commit -m "Integrate Mobile Control public read API"
+git push origin development
+
+Tunggu Vercel Preview berstatus Ready.
+
+Karena Environment Variables baru ditambahkan, lakukan Redeploy deployment
+Preview terbaru bila Vercel belum membangun ulang otomatis.
+
+======================================================================
+8. UJI ENDPOINT
+======================================================================
+
+Buka URL Preview terbaru, kemudian uji:
+
+https://URL-PREVIEW-ANDA/api/public/categories
+https://URL-PREVIEW-ANDA/api/public/material-finishing
+https://URL-PREVIEW-ANDA/api/public/portfolio
+
+Respons yang benar:
+
+"success": true
+
+Portofolio hanya muncul bila status pada PRINT_PORTFOLIOS adalah ACTIVE.
+Screenshot handoff memperlihatkan record saat ini berstatus ARCHIVED, sehingga
+record tersebut memang tidak boleh muncul pada endpoint publik.
+
+======================================================================
+9. SIAPKAN DATA QA
+======================================================================
+
+Pada Mobile Control Preview:
+
+1. Buat atau ubah minimal satu portofolio menjadi ACTIVE.
+2. Pastikan kategori aktif.
+3. Pastikan minimal satu material aktif.
+4. Pastikan minimal satu finishing aktif.
+5. Pastikan cover tersedia.
+6. Pastikan deskripsi tersedia.
+7. Unggah foto referensi material bila diperlukan.
+8. Unggah foto referensi finishing bila diperlukan.
+
+Setelah publish, tunggu maksimal sekitar 60–300 detik sesuai cache, kemudian
+refresh website Preview.
+
+======================================================================
+10. PERILAKU MATERIAL DAN FINISHING
+======================================================================
+
+Daftar Material dan Finishing mengikuti data aktif dari Mobile Control.
+
+Untuk master lama yang ID/slug-nya sudah dikenal website:
+
+- nama dari Mobile Control dipakai;
+- deskripsi dari Mobile Control dipakai;
+- foto Mobile Control dipakai bila tersedia;
+- karakteristik lokal dipakai sebagai enrichment sementara;
+- rekomendasi lokal dipakai sebagai enrichment sementara.
+
+Untuk master baru:
+
+- tetap tampil;
+- menggunakan nama/deskripsi/foto Mobile Control;
+- jika foto kosong, tampil placeholder;
+- bagian yang belum mempunyai data menampilkan keterangan belum tersedia;
+- data tidak dikarang.
+
+Master nonaktif atau terhapus tidak tampil karena tidak dikembalikan backend.
+
+======================================================================
+11. DIAGNOSIS ERROR
+======================================================================
+
+PUBLIC_API_NOT_CONFIGURED
+- GAS_WEB_APP_URL atau GAS_SHARED_SECRET belum diisi di Vercel.
+
+INVALID_API_SECRET / UNAUTHORIZED
+- Shared secret tidak cocok.
+- Pastikan menggunakan secret Preview yang sama dengan Apps Script Preview.
+
+BACKEND_TIMEOUT
+- Google Apps Script melebihi waktu tunggu.
+- Periksa deployment, Spreadsheet, dan Apps Script execution log.
+
+BACKEND_INVALID_JSON
+- GAS mengembalikan HTML/error, bukan JSON.
+- Pastikan URL yang digunakan adalah URL Web App /exec.
+
+PORTFOLIO_NOT_FOUND
+- Slug tidak ada atau portofolio bukan ACTIVE.
+
+Respons sukses tetapi items kosong
+- Tidak ada portofolio ACTIVE.
+- Ini bukan error integrasi.
+
+Foto material/finishing memakai placeholder
+- image_url dan thumbnail_url pada master masih kosong.
+
+======================================================================
+12. QA WAJIB
+======================================================================
+
+Uji:
+
+360 px
+390 px
+430 px
+768 px
+1024 px
+1440 px
+
+Periksa:
+
+- Portofolio ACTIVE tampil.
+- DRAFT dan ARCHIVED tidak tampil.
+- Cover dan galeri tampil.
+- Filter kategori bekerja.
+- Filter material bekerja.
+- Filter finishing bekerja.
+- Material aktif tampil.
+- Finishing aktif tampil.
+- Master nonaktif tidak tampil.
+- Related portfolio bekerja.
+- Loading, empty, dan error state tidak merusak layout.
+- Tidak ada secret pada View Source atau browser bundle.
+
+======================================================================
+13. BATASAN FASE 1
+======================================================================
+
+- API memakai read action admin yang sudah tersedia melalui adapter server-side.
+- Data portofolio diambil sebagai cached public index, maksimum 500 record.
+- Material/Finishing aktual belum memiliki field enrichment lengkap.
+- Google Drive tetap menjadi media storage tahap pertama.
+- Production dan domain resmi belum diaktifkan pada tahap ini.
+
+======================================================================
+14. PRODUCTION
+======================================================================
+
+Jangan merge ke main sebelum Preview PASS.
+
+Production memerlukan:
+
+- GAS deployment Production terpisah;
+- Spreadsheet Production terpisah;
+- folder Drive Production terpisah;
+- shared secret Production berbeda;
+- NEXORA_ENVIRONMENT=production;
+- QA ulang pada domain print.nexorabisnis.site.
+
+--- AKHIR PANDUAN ---

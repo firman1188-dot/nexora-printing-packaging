@@ -3571,3 +3571,12 @@ body.material-finishing-page {
     grid-template-rows: repeat(2, minmax(0, 1fr));
   }
 }
+
+/* v5.8.0 — dynamic Mobile Control data states */
+.mf-check-list .mf-data-pending {
+  color: #6b778c;
+  font-style: italic;
+}
+.mf-check-list .mf-data-pending::before {
+  display: none;
+}

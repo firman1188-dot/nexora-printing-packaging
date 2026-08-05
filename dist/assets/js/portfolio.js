@@ -45,6 +45,7 @@
   };
 
   const icon = (name) => window.NEXORA_ICONS?.[name] || '';
+  const imageFallback = '/assets/images/material-finishing/sample-fallback.svg';
 
   const normalizeData = (payload) => {
     const source = payload?.data || payload || {};
@@ -178,7 +179,7 @@
       return `
         <article class="portfolio-result-card${active ? ' active' : ''}" data-portfolio-id="${escapeHtml(item.portfolio_id)}">
           <button type="button" aria-label="Lihat detail ${escapeHtml(item.title)}">
-            <span class="portfolio-card-image"><img src="${escapeHtml(item.cover_image)}" alt="${escapeHtml(item.image_alt_text || item.title)}" loading="lazy"></span>
+            <span class="portfolio-card-image"><img src="${escapeHtml(item.cover_image || imageFallback)}" alt="${escapeHtml(item.image_alt_text || item.title)}" loading="lazy" onerror="this.onerror=null;this.src='${imageFallback}'"></span>
             <span class="portfolio-card-copy">
               <b>${escapeHtml(item.title)}</b>
               <small>${escapeHtml(category?.category_name || '')}</small>
@@ -248,7 +249,7 @@
     elements.detail.innerHTML = `
       <button type="button" class="portfolio-detail-close" data-detail-close aria-label="Tutup detail">${icon('close')}</button>
       <div class="portfolio-preview">
-        <img src="${escapeHtml(currentImage)}" alt="${escapeHtml(item.image_alt_text || item.title)}">
+        <img src="${escapeHtml(currentImage || imageFallback)}" alt="${escapeHtml(item.image_alt_text || item.title)}" onerror="this.onerror=null;this.src='${imageFallback}'">
         ${images.length > 1 ? `
           <button type="button" class="preview-arrow prev" data-image-step="-1" aria-label="Foto sebelumnya">${icon('chevron-left')}</button>
           <button type="button" class="preview-arrow next" data-image-step="1" aria-label="Foto berikutnya">${icon('chevron-right')}</button>

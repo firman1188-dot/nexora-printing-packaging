@@ -1,0 +1,49 @@
+NEXORA Printing & Packaging v5.8.0
+Mobile Control Public Read Integration
+
+TARGET BASELINE
+- Website v5.7.2
+- Mobile Control v1.6.3
+- Branch development
+- Vercel Preview
+
+NEW FILES
+- api/_lib/public-api.js
+- api/public/portfolio.js
+- api/public/portfolio/[slug].js
+- api/public/categories.js
+- api/public/materials.js
+- api/public/materials/[slug].js
+- api/public/finishings.js
+- api/public/finishings/[slug].js
+- api/public/material-finishing.js
+- scripts/verify-public-integration.mjs
+- src/assets/images/material-finishing/sample-fallback.svg
+- MOBILE_CONTROL_WEBSITE_INTEGRATION_v5.8.0.md
+- INSTALLATION_GUIDE_MOBILE_CONTROL_INTEGRATION_v5.8.0.txt
+- PATCH_MANIFEST_V5_8_0.txt
+
+MODIFIED FILES
+- .env.example
+- package.json
+- vercel.json
+- src/assets/js/site-config.js
+- src/assets/js/portfolio.js
+- src/assets/js/material-finishing.js
+- src/assets/css/styles.css
+
+SECURITY
+- No GAS URL actual value.
+- No GAS shared secret.
+- No Spreadsheet ID.
+- No session secret.
+- Read action allowlist only.
+- Browser uses same-origin GET endpoints.
+
+QA RESULT
+- Build PASS
+- General verification PASS
+- Portfolio verification PASS
+- Material & Finishing verification PASS
+- Public integration verification PASS
+- Mock GAS integration PASS

@@ -59,18 +59,72 @@
     return normalizePortfolio(window.NEXORA_PORTFOLIO_DATA || {});
   };
 
+  const fallbackImage = '/assets/images/material-finishing/sample-fallback.svg';
+  const localMasterData = () => window.NEXORA_MATERIAL_FINISHING_DATA || { materials: [], finishings: [], material_groups: [], finishing_groups: [] };
+
+  const hasItems = (value) => Array.isArray(value) && value.length > 0;
+  const findLocal = (items, idKeyName, slugKeyName, apiItem) => items.find((item) =>
+    (apiItem[idKeyName] && item[idKeyName] === apiItem[idKeyName]) ||
+    (apiItem[slugKeyName] && item[slugKeyName] === apiItem[slugKeyName]));
+
+  const mergeMaterial = (apiItem, local) => ({
+    ...(local || {}),
+    ...apiItem,
+    material_id: apiItem.material_id || local?.material_id || '',
+    material_name: apiItem.material_name || local?.material_name || 'Material',
+    material_slug: apiItem.material_slug || local?.material_slug || '',
+    material_group: apiItem.material_group || local?.material_group || 'other',
+    preview_image: apiItem.preview_image || apiItem.image_url || apiItem.thumbnail_url || local?.preview_image || fallbackImage,
+    short_description: apiItem.short_description || apiItem.description || local?.short_description || 'Informasi material tersedia melalui Mobile Control.',
+    notes: apiItem.notes || local?.notes || apiItem.description || 'Detail tambahan material belum tersedia.',
+    characteristics: hasItems(apiItem.characteristics) ? apiItem.characteristics : (local?.characteristics || []),
+    recommended_uses: hasItems(apiItem.recommended_uses) ? apiItem.recommended_uses : (local?.recommended_uses || []),
+    status: String(apiItem.status || (apiItem.active === false ? 'INACTIVE' : 'ACTIVE')).toUpperCase(),
+    display_order: Number(apiItem.display_order ?? apiItem.sort_order ?? local?.display_order ?? 9999)
+  });
+
+  const mergeFinishing = (apiItem, local) => ({
+    ...(local || {}),
+    ...apiItem,
+    finishing_id: apiItem.finishing_id || local?.finishing_id || '',
+    finishing_name: apiItem.finishing_name || local?.finishing_name || 'Finishing',
+    finishing_slug: apiItem.finishing_slug || local?.finishing_slug || '',
+    finishing_group: apiItem.finishing_group || local?.finishing_group || 'other',
+    preview_image: apiItem.preview_image || apiItem.image_url || apiItem.thumbnail_url || local?.preview_image || fallbackImage,
+    short_description: apiItem.short_description || apiItem.description || local?.short_description || 'Informasi finishing tersedia melalui Mobile Control.',
+    effect: apiItem.effect || apiItem.description || local?.effect || 'Efek finishing sesuai spesifikasi produksi.',
+    notes: apiItem.notes || local?.notes || apiItem.description || 'Detail tambahan finishing belum tersedia.',
+    characteristics: hasItems(apiItem.characteristics) ? apiItem.characteristics : (local?.characteristics || []),
+    recommended_uses: hasItems(apiItem.recommended_uses) ? apiItem.recommended_uses : (local?.recommended_uses || []),
+    recommended_combinations: hasItems(apiItem.recommended_combinations) ? apiItem.recommended_combinations : (local?.recommended_combinations || []),
+    status: String(apiItem.status || (apiItem.active === false ? 'INACTIVE' : 'ACTIVE')).toUpperCase(),
+    display_order: Number(apiItem.display_order ?? apiItem.sort_order ?? local?.display_order ?? 9999)
+  });
+
+  const mergeApiData = (payload) => {
+    const api = payload?.data || payload || {};
+    const local = localMasterData();
+    const apiMaterials = Array.isArray(api.materials) ? api.materials : [];
+    const apiFinishings = Array.isArray(api.finishings) ? api.finishings : [];
+    return {
+      material_groups: hasItems(api.material_groups) ? api.material_groups : local.material_groups,
+      finishing_groups: hasItems(api.finishing_groups) ? api.finishing_groups : local.finishing_groups,
+      materials: apiMaterials.map((item) => mergeMaterial(item, findLocal(local.materials, 'material_id', 'material_slug', item))),
+      finishings: apiFinishings.map((item) => mergeFinishing(item, findLocal(local.finishings, 'finishing_id', 'finishing_slug', item)))
+    };
+  };
+
   const loadData = async () => {
     if (config.materialFinishingApiUrl) {
       try {
         const response = await fetch(config.materialFinishingApiUrl, { headers: { Accept: 'application/json' } });
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
-        const payload = await response.json();
-        return payload?.data || payload;
+        return mergeApiData(await response.json());
       } catch (error) {
         console.warn('Master Material & Finishing API gagal, menggunakan data lokal.', error);
       }
     }
-    return window.NEXORA_MATERIAL_FINISHING_DATA || { materials: [], finishings: [], material_groups: [], finishing_groups: [] };
+    return localMasterData();
   };
 
   const activeItems = () => itemsForMode()
@@ -134,7 +188,7 @@
       return `
         <article class="mf-card${active ? ' active' : ''}" data-mf-id="${escapeHtml(id)}">
           <button type="button" aria-label="Lihat detail ${escapeHtml(item[nameKey()])}">
-            <span class="mf-card-image"><img src="${escapeHtml(item.preview_image)}" alt="${escapeHtml(item[nameKey()])}" loading="lazy"></span>
+            <span class="mf-card-image"><img src="${escapeHtml(item.preview_image || fallbackImage)}" alt="${escapeHtml(item[nameKey()])}" loading="lazy" onerror="this.onerror=null;this.src='${fallbackImage}'"></span>
             <span class="mf-card-copy"><b>${escapeHtml(item[nameKey()])}</b><small>${escapeHtml(groupName(item[groupKey()]))}</small></span>
             <span class="mf-card-check">${icon('check')}</span>
           </button>
@@ -197,7 +251,7 @@
 
     elements.detail.innerHTML = `
       <button type="button" class="mf-detail-close" data-mf-detail-close aria-label="Tutup detail">${icon('close')}</button>
-      <div class="mf-detail-preview"><img src="${escapeHtml(item.preview_image)}" alt="${escapeHtml(item[nameKey()])}"></div>
+      <div class="mf-detail-preview"><img src="${escapeHtml(item.preview_image || fallbackImage)}" alt="${escapeHtml(item[nameKey()])}" onerror="this.onerror=null;this.src='${fallbackImage}'"></div>
       <div class="mf-detail-heading">
         <div><h2>${escapeHtml(item[nameKey()])}</h2><p>${escapeHtml(groupName(item[groupKey()]))}</p></div>
         <button type="button" class="mf-share" data-mf-share>${icon('share')}<span>Bagikan</span></button>
@@ -211,13 +265,13 @@
           </section>
           <section>
             <h3>Karakteristik</h3>
-            <ul class="mf-check-list">${characteristics.map((value) => `<li>${icon('check')}<span>${escapeHtml(value)}</span></li>`).join('')}</ul>
+            <ul class="mf-check-list">${characteristics.length ? characteristics.map((value) => `<li>${icon('check')}<span>${escapeHtml(value)}</span></li>`).join('') : '<li class="mf-data-pending"><span>Informasi karakteristik belum tersedia.</span></li>'}</ul>
           </section>
         </div>
 
         <section class="mf-uses">
           <h3>Cocok Untuk</h3>
-          <div>${uses.map((value, index) => `<span>${icon(['box','book','label','calendar','bag','promo'][index % 6])}<b>${escapeHtml(value)}</b></span>`).join('')}</div>
+          <div>${uses.length ? uses.map((value, index) => `<span>${icon(['box','book','label','calendar','bag','promo'][index % 6])}<b>${escapeHtml(value)}</b></span>`).join('') : '<p class="mf-related-empty">Rekomendasi penggunaan belum tersedia.</p>'}</div>
         </section>
 
         ${!isMaterial && combinations.length ? `<section class="mf-combinations"><h3>Kombinasi yang Disarankan</h3><div>${combinations.map((value) => `<span>${escapeHtml(value)}</span>`).join('')}</div></section>` : ''}
@@ -226,7 +280,7 @@
 
         <section class="mf-related">
           <div class="mf-related-heading"><h3>Hasil Produksi Terkait</h3><a href="${portfolioUrl(item)}">Lihat Semua ${icon('arrow')}</a></div>
-          ${related.length ? `<div class="mf-related-grid">${related.slice(0, 4).map((portfolio) => `<a href="${portfolioUrl(item, portfolio)}" title="${escapeHtml(portfolio.title)}"><img src="${escapeHtml(portfolio.cover_image)}" alt="${escapeHtml(portfolio.title)}"><span>${escapeHtml(portfolio.title)}</span></a>`).join('')}</div>` : '<p class="mf-related-empty">Belum ada portofolio aktif yang menggunakan pilihan ini.</p>'}
+          ${related.length ? `<div class="mf-related-grid">${related.slice(0, 4).map((portfolio) => `<a href="${portfolioUrl(item, portfolio)}" title="${escapeHtml(portfolio.title)}"><img src="${escapeHtml(portfolio.cover_image || fallbackImage)}" alt="${escapeHtml(portfolio.title)}" loading="lazy" onerror="this.onerror=null;this.src='${fallbackImage}'"><span>${escapeHtml(portfolio.title)}</span></a>`).join('')}</div>` : '<p class="mf-related-empty">Belum ada portofolio aktif yang menggunakan pilihan ini.</p>'}
         </section>
       </div>
 
