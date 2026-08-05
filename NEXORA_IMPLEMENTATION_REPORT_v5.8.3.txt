@@ -1,0 +1,22 @@
+NEXORA PRINTING & PACKAGING
+LAPORAN IMPLEMENTASI v5.8.3
+
+Tanggal : 5 Agustus 2026
+Status  : BUILD PASS / QA PASS
+Scope   : Contact proportion + dynamic Finishing filter fit
+
+PERBAIKAN
+1. Halaman Kontak sekarang memakai body class contact-page sehingga kontrak layout bersama benar-benar diterapkan.
+2. Hero Kontak dikunci pada sumbu desktop 1480 px, tidak lagi melebar sampai tepi layar.
+3. Tipografi, ruang teks, tombol, dan visual Kontak diperkecil serta diseimbangkan.
+4. Filter Material/Finishing memakai jumlah grup aktual.
+5. Tujuh grup Finishing tampil satu baris pada desktop.
+6. Ikon filter Finishing diperkecil responsif pada desktop, tablet, dan mobile.
+7. Asset cache version dinaikkan ke v5.8.3.
+
+CATATAN
+- Source integrasi Mobile Control tidak diubah secara fungsional.
+- Endpoint tetap read-only.
+- Production belum boleh dipromosikan sebelum Preview v5.8.3 diperiksa.
+
+--- AKHIR LAPORAN ---

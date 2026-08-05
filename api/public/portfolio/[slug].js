@@ -1,4 +1,4 @@
-/** NEXORA Public Portfolio Detail API v5.8.2 */
+/** NEXORA Public Portfolio Detail API v5.8.3 */
 import {
   getPortfolioBySlug,
   getPublicMasters,

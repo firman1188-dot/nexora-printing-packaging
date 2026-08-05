@@ -1,4 +1,4 @@
-/** NEXORA Public Categories API v5.8.2 */
+/** NEXORA Public Categories API v5.8.3 */
 import { getPublicMasters, handlePublicError, publicEnvelope, requireGet, setPublicHeaders } from '../_lib/public-api.js';
 
 export default async function handler(req, res) {

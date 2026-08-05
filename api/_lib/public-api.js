@@ -2,7 +2,7 @@
  * Project  : NEXORA Printing & Packaging
  * Module   : Public Website Integration
  * File     : api/_lib/public-api.js
- * Version  : 5.8.2
+ * Version  : 5.8.3
  * Status   : Integration Candidate
  * Purpose  : Read-only server adapter from the public website to the existing
  *            Mobile Control Google Apps Script action API.
@@ -355,7 +355,7 @@ export const publicEnvelope = (data) => ({
   data,
   error: null,
   timestamp: new Date().toISOString(),
-  version: '5.8.2'
+  version: '5.8.3'
 });
 
 export const errorEnvelope = (error) => ({
@@ -367,7 +367,7 @@ export const errorEnvelope = (error) => ({
     ...(error?.details ? { details: error.details } : {})
   },
   timestamp: new Date().toISOString(),
-  version: '5.8.2'
+  version: '5.8.3'
 });
 
 export const setPublicHeaders = (res, options = {}) => {

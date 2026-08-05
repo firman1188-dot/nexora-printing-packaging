@@ -3769,3 +3769,139 @@ body.contact-page {
   }
 }
 
+
+
+/* ========================================================================== 
+   NEXORA v5.8.3 — CONTACT PROPORTION & DYNAMIC FINISHING FILTER FIT
+   LOCKED:
+   - Contact page receives the same 1480 px desktop axis as public pages.
+   - Contact hero is compact, balanced, and no longer stretches edge-to-edge.
+   - Material/Finishing filters use their actual group count on desktop.
+   - Seven finishing groups stay in one row with smaller responsive icons.
+   ========================================================================== */
+@media (min-width: 900px) {
+  .contact-page .inner-hero {
+    width: min(1480px, calc(100% - 72px));
+    min-height: clamp(520px, 66vh, 640px);
+    margin: clamp(14px, 1.7vh, 22px) auto clamp(28px, 3.5vh, 42px);
+    border: 1px solid #e4e9f0;
+    border-radius: 24px;
+    box-shadow: 0 18px 48px rgba(7,27,63,.07);
+    background: #fff;
+  }
+  .contact-page .inner-hero-grid {
+    min-height: inherit;
+    grid-template-columns: minmax(470px, .88fr) minmax(0, 1.12fr);
+  }
+  .contact-page .inner-hero-grid > div:first-child {
+    padding: clamp(46px, 5.4vw, 82px) clamp(42px, 4.4vw, 70px)
+      clamp(46px, 5.4vw, 82px) clamp(72px, 8vw, 128px);
+  }
+  .contact-page .inner-hero h1 {
+    max-width: 620px;
+    margin: 12px 0 18px;
+    font-size: clamp(3.15rem, 4.15vw, 4.65rem);
+    line-height: .98;
+  }
+  .contact-page .inner-hero p {
+    max-width: 610px;
+    font-size: clamp(.9rem, 1vw, 1.02rem);
+    line-height: 1.55;
+  }
+  .contact-page .inner-hero-actions { margin-top: 23px; }
+  .contact-page .inner-hero-visual {
+    min-height: inherit;
+    border-left: 1px solid #edf0f5;
+    background: #f5f7fa;
+  }
+  .contact-page .inner-hero-visual::before { opacity: .18; }
+  .contact-page .inner-hero-visual img {
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .material-finishing-page .mf-filter-bar {
+    grid-template-columns: repeat(var(--mf-filter-count, 6), minmax(0, 1fr));
+  }
+  .material-finishing-page .mf-filter-bar[data-mf-mode="finishing"] .mf-filter {
+    min-width: 0;
+    min-height: clamp(58px, 7.2vh, 68px);
+    gap: 3px;
+    padding: 5px 4px;
+    font-size: clamp(.57rem, .58vw, .7rem);
+  }
+  .material-finishing-page .mf-filter-bar[data-mf-mode="finishing"] .mf-filter-icon {
+    width: clamp(17px, 1.12vw, 21px);
+    height: clamp(17px, 1.12vw, 21px);
+  }
+  .material-finishing-page .mf-filter-bar[data-mf-mode="finishing"] .mf-filter::after {
+    left: 20%;
+    right: 20%;
+    height: 2px;
+  }
+}
+
+@media (min-width: 900px) and (max-width: 1180px) {
+  .contact-page .inner-hero {
+    width: calc(100% - 40px);
+    min-height: 520px;
+  }
+  .contact-page .inner-hero-grid {
+    grid-template-columns: minmax(390px, .92fr) minmax(0, 1.08fr);
+  }
+  .contact-page .inner-hero-grid > div:first-child {
+    padding: 44px 38px 44px 48px;
+  }
+  .contact-page .inner-hero h1 { font-size: clamp(2.8rem, 4.6vw, 3.75rem); }
+  .material-finishing-page .mf-filter-bar[data-mf-mode="finishing"] .mf-filter-icon {
+    width: 17px;
+    height: 17px;
+  }
+}
+
+@media (max-width: 899px) {
+  .contact-page .inner-hero {
+    width: 100%;
+    min-height: 0;
+    margin: 0;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  .contact-page .inner-hero-grid { grid-template-columns: 1fr; }
+  .contact-page .inner-hero-grid > div:first-child {
+    padding: 42px 18px 30px;
+  }
+  .contact-page .inner-hero h1 {
+    max-width: 620px;
+    margin: 10px 0 16px;
+    font-size: clamp(2.35rem, 11vw, 3.25rem);
+    line-height: .98;
+  }
+  .contact-page .inner-hero p { font-size: .9rem; line-height: 1.5; }
+  .contact-page .inner-hero-visual {
+    min-height: 0;
+    aspect-ratio: 4 / 3;
+  }
+  .material-finishing-page .mf-filter-bar[data-mf-mode="finishing"] .mf-filter {
+    flex-basis: 86px;
+    min-height: 58px;
+    gap: 2px;
+    font-size: .54rem;
+  }
+  .material-finishing-page .mf-filter-bar[data-mf-mode="finishing"] .mf-filter-icon {
+    width: 19px;
+    height: 19px;
+  }
+}
+
+@media (max-width: 430px) {
+  .contact-page .inner-hero-grid > div:first-child { padding-inline: 16px; }
+  .material-finishing-page .mf-filter-bar[data-mf-mode="finishing"] .mf-filter {
+    flex-basis: 80px;
+  }
+  .material-finishing-page .mf-filter-bar[data-mf-mode="finishing"] .mf-filter-icon {
+    width: 18px;
+    height: 18px;
+  }
+}

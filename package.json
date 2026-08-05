@@ -1,18 +1,19 @@
 {
-  "name": "nexora-printing-packaging-v5-8-2-header-cache-filter-calibration",
-  "version": "5.8.2",
+  "name": "nexora-printing-packaging-v5-8-3-contact-filter-fit",
+  "version": "5.8.3",
   "private": true,
   "type": "module",
-  "description": "NEXORA Printing & Packaging — shared header alignment, cache-safe release assets, and responsive filter icon calibration.",
+  "description": "NEXORA Printing & Packaging — proportional Contact layout and dynamic finishing filter fit.",
   "scripts": {
     "build": "node scripts/build.mjs",
     "dev": "node scripts/dev-server.mjs",
     "verify": "node scripts/verify.mjs",
-    "qa": "npm run build && npm run verify && npm run verify:portfolio && npm run verify:material && npm run verify:integration && npm run verify:readiness",
+    "qa": "npm run build && npm run verify && npm run verify:portfolio && npm run verify:material && npm run verify:integration && npm run verify:readiness && npm run verify:ui583",
     "verify:portfolio": "node scripts/verify-portfolio.mjs",
     "verify:material": "node scripts/verify-material-finishing.mjs",
     "verify:integration": "node scripts/verify-public-integration.mjs",
-    "verify:readiness": "node scripts/verify-production-readiness.mjs"
+    "verify:readiness": "node scripts/verify-production-readiness.mjs",
+    "verify:ui583": "node scripts/verify-v5.8.3-ui.mjs"
   },
   "engines": {
     "node": ">=18"

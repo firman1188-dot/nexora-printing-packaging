@@ -1,0 +1,14 @@
+NEXORA v5.8.3 — PANDUAN PEMASANGAN PATCH
+
+1. Checkout branch development dan pastikan working tree clean.
+2. Backup folder project aktif.
+3. Ekstrak patch dan salin seluruh isinya ke root project.
+4. Pilih Replace the files in the destination.
+5. Jalankan: npm run qa
+6. Commit: git add . && git commit -m "Balance contact page and fit finishing filters"
+7. Push: git push origin development
+8. Tunggu deployment Preview baru berstatus Ready.
+9. Buka alias development lalu lakukan Ctrl+Shift+R satu kali.
+10. Uji /kontak dan /material-finishing?type=finishing.
+
+Jangan merge ke main sebelum QA Preview disetujui.

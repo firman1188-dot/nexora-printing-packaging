@@ -154,7 +154,10 @@
   };
 
   const renderFilters = () => {
-    elements.filters.innerHTML = groupsForMode().map((group) => `
+    const groups = groupsForMode();
+    elements.filters.dataset.mfMode = state.mode;
+    elements.filters.style.setProperty('--mf-filter-count', String(Math.max(groups.length, 1)));
+    elements.filters.innerHTML = groups.map((group) => `
       <button type="button" class="mf-filter${group.group_id === state.group ? ' active' : ''}" data-mf-group="${escapeHtml(group.group_id)}">
         <span class="mf-filter-icon">${icon(group.icon)}</span>
         <span>${escapeHtml(group.group_name)}</span>

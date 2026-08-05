@@ -23,6 +23,7 @@ if (header.trim() !== homeHeader.trim()) {
 const css = await readFile(path.join(root, 'src/assets/css/styles.css'), 'utf8');
 for (const contract of [
   'NEXORA v5.8.2 — HEADER ALIGNMENT, CACHE-SAFE RELEASE & FILTER CALIBRATION',
+  'NEXORA v5.8.3 — CONTACT PROPORTION & DYNAMIC FINISHING FILTER FIT',
   '.home-c1-final .header-shell',
   'width: min(1480px, calc(100% - 72px))',
   'body.home-c1-final',
@@ -35,8 +36,8 @@ const api = await readFile(path.join(root, 'api/_lib/public-api.js'), 'utf8');
 if (!api.includes('const DEFAULT_TIMEOUT_MS = 25000;')) {
   throw new Error('Default timeout backend belum 25000 ms.');
 }
-if (!api.includes("version: '5.8.2'")) {
-  throw new Error('Public API envelope belum memakai versi 5.8.2.');
+if (!api.includes("version: '5.8.3'")) {
+  throw new Error('Public API envelope belum memakai versi 5.8.3.');
 }
 
 const env = await readFile(path.join(root, '.env.example'), 'utf8');
@@ -53,8 +54,8 @@ if (!vercel.includes('public, max-age=0, must-revalidate')) {
 
 for (const page of ['index.html', 'portofolio.html', 'material-finishing.html', 'kontak.html']) {
   const html = await readFile(path.join(root, 'src/pages', page), 'utf8');
-  if (!html.includes('/assets/css/styles.css?v=5.8.2')) {
-    throw new Error(`${page}: cache-busting CSS v5.8.2 belum terpasang.`);
+  if (!html.includes('/assets/css/styles.css?v=5.8.3')) {
+    throw new Error(`${page}: cache-busting CSS v5.8.3 belum terpasang.`);
   }
 }
 

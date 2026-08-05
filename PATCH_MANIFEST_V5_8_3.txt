@@ -1,0 +1,14 @@
+NEXORA PATCH MANIFEST v5.8.3
+Baseline: v5.8.2
+Target: v5.8.3
+
+Changed:
+- package.json
+- src/assets/css/styles.css
+- src/assets/js/material-finishing.js
+- src/pages/*.html (cache version and Contact page class)
+- api public version markers
+- scripts/verify-production-readiness.mjs
+- scripts/verify-v5.8.3-ui.mjs
+- dist/* generated build
+- release documentation

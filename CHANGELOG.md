@@ -1,3 +1,12 @@
+# v5.8.3 — Contact Proportion & Dynamic Finishing Filter Fit
+
+- Added missing `contact-page` body class.
+- Balanced Contact hero within shared 1480 px axis.
+- Made Material/Finishing filter columns dynamic by group count.
+- Kept all seven Finishing groups in one desktop row.
+- Reduced Finishing filter icons responsively.
+- Bumped public asset cache key and API envelope to v5.8.3.
+
 # Changelog
 
 ## v5.8.2 — Header Alignment, Cache Safety & Responsive Filter Icons
