@@ -3,50 +3,58 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <title>Portofolio Hasil Produksi — NEXORA Printing & Packaging</title>
-  <meta name="description" content="Portofolio hasil produksi nyata NEXORA Printing & Packaging. Filter berdasarkan kategori, material, dan finishing.">
-  <meta name="theme-color" content="#ffffff">
+  <title>Portofolio Hasil Produksi — NEXORA Printing &amp; Packaging</title>
+  <meta name="description" content="Portofolio hasil produksi nyata NEXORA. Setiap produk ditampilkan dari beberapa sudut, lengkap dengan material, finishing, ukuran, dan jumlah produksi.">
+  <meta name="theme-color" content="#03050c">
+  <link rel="canonical" href="https://print.nexorabisnis.site/portofolio.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Portofolio Hasil Produksi — NEXORA">
+  <meta property="og:description" content="Hasil produksi nyata printing dan packaging NEXORA.">
+  <meta property="og:url" content="https://print.nexorabisnis.site/portofolio.html">
   <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="/assets/css/styles.css?v=5.8.9">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/a2.css?v=6.0.0">
 </head>
-<body class="portfolio-page">
+<body data-page="portfolio">
   {{HEADER}}
-
-  <main class="page-main portfolio-experience" data-portfolio-app>
-    <section class="portfolio-shell">
-      <header class="portfolio-page-heading">
-        <div>
-          <span class="eyebrow">HASIL PRODUKSI NYATA</span>
-          <h1>Portofolio Hasil Produksi</h1>
-          <p>Kumpulan hasil cetak dan kemasan nyata dari berbagai kebutuhan brand. Pilih kategori untuk melihat karya yang relevan.</p>
-        </div>
-      </header>
-
-      <nav class="portfolio-filter-bar" data-portfolio-filters aria-label="Filter kategori portofolio"></nav>
-      <div class="portfolio-filter-context" data-portfolio-filter-context hidden></div>
-      <p class="portfolio-load-status" data-portfolio-status role="status" aria-live="polite"></p>
-
-      <div class="portfolio-workspace">
-        <section class="portfolio-gallery-area" aria-label="Daftar portofolio">
-          <div class="portfolio-result-grid" data-portfolio-grid></div>
-          <footer class="portfolio-gallery-footer">
-            <p data-portfolio-result-text></p>
-            <nav class="portfolio-pagination" data-portfolio-pagination aria-label="Paginasi portofolio"></nav>
-          </footer>
-        </section>
-
-        <aside class="portfolio-detail-panel" data-portfolio-detail aria-live="polite" aria-label="Detail portofolio"></aside>
+  <div id="app">
+  <main class="page" data-portfolio-app>
+    <section class="info">
+      <div class="kick">Hasil produksi nyata</div>
+      <div class="ctx" data-ctx></div>
+      <div class="num" data-no>00<small>/ 0</small></div>
+      <div class="catn" data-cat></div>
+      <h1 class="big" data-title>Memuat…</h1>
+      <dl class="spec" data-spec></dl>
+      <div class="act">
+        <button class="btn p" type="button" data-similar>Buat Produk Serupa</button>
+        <button class="btn" type="button" data-detail>Detail</button>
+        <button class="btn hide-m" type="button" data-open-consultation>Konsultasi</button>
       </div>
     </section>
+    <section class="stage" data-stage aria-label="Daftar hasil produksi"></section>
   </main>
+  <nav class="chips" data-chips aria-label="Filter kategori"></nav>
 
-  {{FOOTER}}
+  <div class="modal" data-detail-modal aria-hidden="true">
+    <div class="modal-backdrop" data-close-detail></div>
+    <section class="panel" role="dialog" aria-modal="true" aria-labelledby="detail-title">
+      <button class="modal-close" type="button" data-close-detail aria-label="Tutup">×</button>
+      <span class="kick">Detail produk</span>
+      <h2 id="detail-title" data-detail-title></h2>
+      <div data-detail-body></div>
+    </section>
+  </div>
+
+  </div>
   {{CONSULTATION}}
-
-  <script src="/assets/js/site-config.js?v=5.8.9"></script>
-  <script src="/assets/js/icons.js?v=5.8.9"></script>
-  <script src="/assets/js/main.js?v=5.8.9"></script>
-  <script src="/assets/js/portfolio-data.js?v=5.8.9"></script>
-  <script src="/assets/js/portfolio.js?v=5.8.9"></script>
+  <script src="/assets/js/site-config.js?v=6.0.0"></script>
+  <script src="/assets/js/portfolio-data.js?v=6.0.0"></script>
+  <script src="/assets/js/a2-data.js?v=6.0.0"></script>
+  <script src="/assets/js/a2-stack.js?v=6.0.0"></script>
+  <script src="/assets/js/a2-core.js?v=6.0.0"></script>
+  <script src="/assets/js/a2-portfolio.js?v=6.0.0"></script>
+  <script type="module" src="/assets/js/samudra.js?v=6.0.0"></script>
 </body>
 </html>

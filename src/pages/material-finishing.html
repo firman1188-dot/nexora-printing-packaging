@@ -3,65 +3,49 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <title>Material & Finishing — NEXORA Printing & Packaging</title>
-  <meta name="description" content="Perpustakaan sampel material dan finishing NEXORA Printing & Packaging, lengkap dengan spesifikasi dan hasil produksi terkait.">
-  <meta name="theme-color" content="#ffffff">
+  <title>Material &amp; Finishing — NEXORA Printing &amp; Packaging</title>
+  <meta name="description" content="Perpustakaan material dan finishing NEXORA, lengkap dengan kode, deskripsi, dan hasil produksi yang menggunakannya.">
+  <meta name="theme-color" content="#03050c">
+  <link rel="canonical" href="https://print.nexorabisnis.site/material-finishing.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Material & Finishing — NEXORA">
+  <meta property="og:description" content="Pilihan material dan finishing NEXORA beserta hasil produksinya.">
+  <meta property="og:url" content="https://print.nexorabisnis.site/material-finishing.html">
   <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="/assets/css/styles.css?v=5.8.9">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/a2.css?v=6.0.0">
 </head>
-<body class="material-finishing-page">
+<body data-page="material">
   {{HEADER}}
-
-  <main class="page-main mf-experience" data-mf-app>
-    <section class="mf-shell">
-      <header class="mf-page-heading">
-        <div class="mf-heading-copy">
-          <span class="eyebrow">MATERIAL &amp; FINISHING</span>
-          <h1>Material &amp; Finishing</h1>
-          <p>Kenali berbagai pilihan bahan berkualitas dan finishing terbaik untuk hasil cetak yang sempurna sesuai kebutuhan Anda.</p>
-        </div>
-        <div class="mf-mode-switch" role="tablist" aria-label="Pilih Material atau Finishing">
-          <button type="button" class="active" role="tab" aria-selected="true" data-mf-mode="material">
-            <span data-icon="material"></span><b>Material</b>
-          </button>
-          <button type="button" role="tab" aria-selected="false" data-mf-mode="finishing">
-            <span data-icon="sparkles"></span><b>Finishing</b>
-          </button>
-        </div>
-      </header>
-
-      <nav class="mf-filter-bar" data-mf-filters aria-label="Filter kelompok material dan finishing"></nav>
-      <p class="mf-load-status" data-mf-status role="status" aria-live="polite"></p>
-
-      <div class="mf-workspace">
-        <section class="mf-library" aria-label="Daftar sampel">
-          <div class="mf-card-grid" data-mf-grid></div>
-          <footer class="mf-library-footer">
-            <p data-mf-result-text></p>
-            <nav class="mf-pagination" data-mf-pagination aria-label="Paginasi sampel"></nav>
-          </footer>
-        </section>
-
-        <aside class="mf-detail-panel" data-mf-detail aria-live="polite" aria-label="Detail material atau finishing"></aside>
+  <div id="app">
+  <main class="page" data-mf-app>
+    <section class="info">
+      <div class="seg" role="tablist" aria-label="Pilih Material atau Finishing">
+        <button type="button" class="on" role="tab" data-mode="M">Material</button>
+        <button type="button" role="tab" data-mode="F">Finishing</button>
       </div>
-
-      <div class="mf-trust-strip" aria-label="Keunggulan layanan NEXORA">
-        <article><span data-icon="quality"></span><div><b>Kualitas Terjamin</b><small>Bahan premium pilihan terbaik</small></div></article>
-        <article><span data-icon="target"></span><div><b>Hasil Cetak Maksimal</b><small>Warna tajam dan presisi tinggi</small></div></article>
-        <article><span data-icon="solution"></span><div><b>Solusi Sesuai Kebutuhan</b><small>Rekomendasi bahan terbaik</small></div></article>
-        <article><span data-icon="people"></span><div><b>Berpengalaman</b><small>Didukung tim profesional</small></div></article>
+      <div class="num" data-no>00<small>/ 0</small></div>
+      <div class="catn" data-cat></div>
+      <h1 class="big" data-title>Memuat…</h1>
+      <dl class="spec" data-spec></dl>
+      <div class="act">
+        <a class="btn p" data-ask href="#" target="_blank" rel="noopener">Tanya Bahan Ini</a>
+        <a class="btn" data-see href="/portofolio.html">Lihat Produk</a>
       </div>
     </section>
+    <section class="stage" data-stage aria-label="Daftar material dan finishing"></section>
   </main>
-
-  {{FOOTER}}
+  <nav class="chips" data-chips aria-label="Kelompok"></nav>
+  </div>
   {{CONSULTATION}}
-
-  <script src="/assets/js/site-config.js?v=5.8.9"></script>
-  <script src="/assets/js/icons.js?v=5.8.9"></script>
-  <script src="/assets/js/main.js?v=5.8.9"></script>
-  <script src="/assets/js/portfolio-data.js?v=5.8.9"></script>
-  <script src="/assets/js/material-finishing-data.js?v=5.8.9"></script>
-  <script src="/assets/js/material-finishing.js?v=5.8.9"></script>
+  <script src="/assets/js/site-config.js?v=6.0.0"></script>
+  <script src="/assets/js/portfolio-data.js?v=6.0.0"></script>
+  <script src="/assets/js/material-finishing-data.js?v=6.0.0"></script>
+  <script src="/assets/js/a2-data.js?v=6.0.0"></script>
+  <script src="/assets/js/a2-stack.js?v=6.0.0"></script>
+  <script src="/assets/js/a2-core.js?v=6.0.0"></script>
+  <script src="/assets/js/a2-material.js?v=6.0.0"></script>
+  <script type="module" src="/assets/js/samudra.js?v=6.0.0"></script>
 </body>
 </html>

@@ -58,12 +58,16 @@ for (const item of finishings) {
 }
 
 const html = await readFile(path.join(src, 'pages/material-finishing.html'), 'utf8');
-for (const token of ['data-mf-app','data-mf-mode','data-mf-filters','data-mf-grid','data-mf-detail','material-finishing-data.js','material-finishing.js']) {
+for (const token of ['data-mf-app','data-mode','data-chips','data-stage','material-finishing-data.js','a2-material.js']) {
   if (!html.includes(token)) errors.push(`Material & Finishing HTML kehilangan ${token}.`);
 }
-const js = await readFile(path.join(src, 'assets/js/material-finishing.js'), 'utf8');
-for (const token of ['materialFinishingApiUrl','portfolioApiUrl','material_ids','finishing_ids','mf-detail-open']) {
-  if (!js.includes(token)) errors.push(`Material & Finishing JS kehilangan dukungan ${token}.`);
+const js = await readFile(path.join(src, 'assets/js/a2-material.js'), 'utf8');
+for (const token of ["'type'", "'group'", "'id'"]) {
+  if (!js.includes(token)) errors.push(`Material & Finishing JS kehilangan parameter URL ${token}.`);
+}
+const dataJs = await readFile(path.join(src, 'assets/js/a2-data.js'), 'utf8');
+for (const token of ['materialFinishingApiUrl','material_ids','finishing_ids']) {
+  if (!dataJs.includes(token)) errors.push(`a2-data.js kehilangan dukungan ${token}.`);
 }
 
 if (errors.length) {

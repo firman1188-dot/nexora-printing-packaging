@@ -1,4 +1,10 @@
-# NEXORA Printing & Packaging v5.6 Final
+# NEXORA Printing & Packaging v5.8.9
+
+> Data portofolio, material, dan finishing berasal dari **Agent Project Finance (Mobile Control)** lewat `/api/public/*`.
+> Slug kategori pada tautan beranda/footer HARUS sama dengan `category_slug` di Mobile Control
+> (saat ini: food-packaging, product-packaging, paper-bag, label-sticker, commercial-printing, custom-project).
+> Bila kategori di Mobile Control berubah, perbarui `src/pages/index.html` dan `src/partials/footer.html`.
+> Nomor WhatsApp & email: `src/assets/js/site-config.js`.
 
 Website publik NEXORA dengan konsep **Creative Print Lab — Color Splash**.
 

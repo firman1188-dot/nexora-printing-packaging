@@ -30,7 +30,20 @@ async function resolveFile(urlPath) {
   return null;
 }
 
+// Pengembangan lokal: /api/public/* diteruskan ke situs live agar data Project Finance tampil (tanpa rahasia di klien).
+const LIVE_SITE = (process.env.LIVE_SITE || 'https://print.nexorabisnis.site').replace(/\/$/, '');
+
 createServer(async (req, res) => {
+  if ((req.url || '').startsWith('/api/public/')) {
+    try {
+      const r = await fetch(LIVE_SITE + req.url, { headers: { Accept: 'application/json' } });
+      res.writeHead(r.status, { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store' });
+      return res.end(Buffer.from(await r.arrayBuffer()));
+    } catch {
+      res.writeHead(502, { 'Content-Type': 'application/json' });
+      return res.end('{"success":false}');
+    }
+  }
   const file = await resolveFile(req.url || '/');
   const target = file || path.join(dist, '404.html');
   try {

@@ -58,17 +58,25 @@ for (const item of items) {
 try { await access(path.join(src, 'pages/produk')); errors.push('Folder src/pages/produk masih ada.'); } catch {}
 
 const header = await readFile(path.join(src, 'partials/header.html'), 'utf8');
-const homeHeader = await readFile(path.join(src, 'partials/home-header.html'), 'utf8');
-if (/\bProduk\b/.test(header)) errors.push('Menu Produk masih ada pada header internal.');
-if (/\bProduk\b/.test(homeHeader)) errors.push('Menu Produk masih ada pada header homepage.');
+if (/\bProduk\b/.test(header)) errors.push('Menu Produk masih ada pada header.');
+if (!header.includes('class="tabbar"')) errors.push('Bar menu bawah (ponsel) hilang dari header.');
 
 const portfolioHtml = await readFile(path.join(src, 'pages/portofolio.html'), 'utf8');
-for (const token of ['data-portfolio-app','data-portfolio-filters','data-portfolio-grid','data-portfolio-detail','portfolio-data.js','portfolio.js']) {
+for (const token of ['data-portfolio-app','data-chips','data-stage','data-spec','portfolio-data.js','a2-portfolio.js']) {
   if (!portfolioHtml.includes(token)) errors.push(`Portofolio HTML kehilangan ${token}.`);
 }
-const portfolioJs = await readFile(path.join(src, 'assets/js/portfolio.js'), 'utf8');
-for (const token of ['category','material','finishing','portfolioApiUrl','gallery_images']) {
-  if (!portfolioJs.includes(token)) errors.push(`Portfolio JS kehilangan dukungan ${token}.`);
+const portfolioJs = await readFile(path.join(src, 'assets/js/a2-portfolio.js'), 'utf8');
+for (const token of ['category','material','finishing','item']) {
+  if (!portfolioJs.includes(`'${token}'`)) errors.push(`Portfolio JS kehilangan parameter URL ${token}.`);
+}
+const dataJs = await readFile(path.join(src, 'assets/js/a2-data.js'), 'utf8');
+for (const token of ['portfolioApiUrl','gallery_images','category_slug']) {
+  if (!dataJs.includes(token)) errors.push(`a2-data.js kehilangan dukungan ${token}.`);
+}
+// Label kategori tidak boleh ditulis manual: harus dibangun dari data sistem.
+for (const page of ['index.html', 'portofolio.html']) {
+  const html = await readFile(path.join(src, 'pages', page), 'utf8');
+  if (/category=(packaging|food-packaging|label|paper-bag)/.test(html)) errors.push(`${page}: tautan kategori tidak boleh ditulis manual.`);
 }
 
 if (errors.length) {

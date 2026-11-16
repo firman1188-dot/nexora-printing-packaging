@@ -3,179 +3,101 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <title>Material & Finishing — NEXORA Printing & Packaging</title>
-  <meta name="description" content="Perpustakaan sampel material dan finishing NEXORA Printing & Packaging, lengkap dengan spesifikasi dan hasil produksi terkait.">
-  <meta name="theme-color" content="#ffffff">
+  <title>Material &amp; Finishing — NEXORA Printing &amp; Packaging</title>
+  <meta name="description" content="Perpustakaan material dan finishing NEXORA, lengkap dengan kode, deskripsi, dan hasil produksi yang menggunakannya.">
+  <meta name="theme-color" content="#03050c">
+  <link rel="canonical" href="https://print.nexorabisnis.site/material-finishing.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Material & Finishing — NEXORA">
+  <meta property="og:description" content="Pilihan material dan finishing NEXORA beserta hasil produksinya.">
+  <meta property="og:url" content="https://print.nexorabisnis.site/material-finishing.html">
   <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="/assets/css/styles.css?v=5.8.9">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/a2.css?v=6.0.0">
 </head>
-<body class="material-finishing-page">
-  <header class="site-header" data-site-header>
-  <div class="header-shell">
-    <a class="brand brand-primary" href="/" aria-label="NEXORA Printing & Packaging - Beranda">
-      <img class="brand-logo-image" src="/assets/brand/nexora-logo-primary.png" alt="NEXORA">
-      <span class="brand-tagline">PRINTING &amp; PACKAGING</span>
-    </a>
-
-    <nav class="desktop-nav" aria-label="Navigasi utama">
-      <a href="/" data-nav="home">Beranda</a>
-      <a href="/portofolio.html" data-nav="portfolio">Portofolio</a>
-      <a href="/material-finishing.html" data-nav="material">Material &amp; Finishing</a>
-      <a href="/kontak.html" data-nav="contact">Kontak</a>
-    </nav>
-
-    <div class="header-actions">
-      <button class="btn btn-orange btn-compact" type="button" data-open-consultation>Konsultasi</button>
-      <button class="menu-toggle" type="button" data-mobile-toggle aria-expanded="false" aria-controls="nexora-mobile-menu" aria-label="Buka menu navigasi">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </div>
-
-  <div class="mobile-menu" id="nexora-mobile-menu" data-mobile-menu aria-hidden="true">
-    <nav aria-label="Navigasi mobile">
-      <a href="/" data-mobile-nav="home">Beranda</a>
-      <a href="/portofolio.html" data-mobile-nav="portfolio">Portofolio</a>
-      <a href="/material-finishing.html" data-mobile-nav="material">Material &amp; Finishing</a>
-      <a href="/kontak.html" data-mobile-nav="contact">Kontak</a>
-      <button class="btn btn-orange" type="button" data-open-consultation>Konsultasi</button>
-    </nav>
-  </div>
+<body data-page="material">
+  <div class="sky" data-sky aria-hidden="true"></div>
+<header class="site-header">
+  <a class="brand" href="/" aria-label="NEXORA Printing &amp; Packaging - Beranda">NEXORA<small>PRINTING &amp; PACKAGING</small></a>
+  <nav class="desktop-nav" aria-label="Navigasi utama">
+    <a href="/" data-nav="home">Beranda</a>
+    <a href="/portofolio.html" data-nav="portfolio">Portofolio</a>
+    <a href="/material-finishing.html" data-nav="material">Material &amp; Finishing</a>
+    <a href="/kontak.html" data-nav="contact">Kontak</a>
+  </nav>
+  <button class="btn glow" type="button" data-open-consultation>Konsultasi</button>
 </header>
+<nav class="tabbar" aria-label="Navigasi bawah">
+  <a href="/" data-nav="home">Beranda</a>
+  <a href="/portofolio.html" data-nav="portfolio">Portofolio</a>
+  <a href="/material-finishing.html" data-nav="material">Material</a>
+  <a href="/kontak.html" data-nav="contact">Kontak</a>
+</nav>
 
-
-  <main class="page-main mf-experience" data-mf-app>
-    <section class="mf-shell">
-      <header class="mf-page-heading">
-        <div class="mf-heading-copy">
-          <span class="eyebrow">MATERIAL &amp; FINISHING</span>
-          <h1>Material &amp; Finishing</h1>
-          <p>Kenali berbagai pilihan bahan berkualitas dan finishing terbaik untuk hasil cetak yang sempurna sesuai kebutuhan Anda.</p>
-        </div>
-        <div class="mf-mode-switch" role="tablist" aria-label="Pilih Material atau Finishing">
-          <button type="button" class="active" role="tab" aria-selected="true" data-mf-mode="material">
-            <span data-icon="material"></span><b>Material</b>
-          </button>
-          <button type="button" role="tab" aria-selected="false" data-mf-mode="finishing">
-            <span data-icon="sparkles"></span><b>Finishing</b>
-          </button>
-        </div>
-      </header>
-
-      <nav class="mf-filter-bar" data-mf-filters aria-label="Filter kelompok material dan finishing"></nav>
-      <p class="mf-load-status" data-mf-status role="status" aria-live="polite"></p>
-
-      <div class="mf-workspace">
-        <section class="mf-library" aria-label="Daftar sampel">
-          <div class="mf-card-grid" data-mf-grid></div>
-          <footer class="mf-library-footer">
-            <p data-mf-result-text></p>
-            <nav class="mf-pagination" data-mf-pagination aria-label="Paginasi sampel"></nav>
-          </footer>
-        </section>
-
-        <aside class="mf-detail-panel" data-mf-detail aria-live="polite" aria-label="Detail material atau finishing"></aside>
+  <div id="app">
+  <main class="page" data-mf-app>
+    <section class="info">
+      <div class="seg" role="tablist" aria-label="Pilih Material atau Finishing">
+        <button type="button" class="on" role="tab" data-mode="M">Material</button>
+        <button type="button" role="tab" data-mode="F">Finishing</button>
       </div>
-
-      <div class="mf-trust-strip" aria-label="Keunggulan layanan NEXORA">
-        <article><span data-icon="quality"></span><div><b>Kualitas Terjamin</b><small>Bahan premium pilihan terbaik</small></div></article>
-        <article><span data-icon="target"></span><div><b>Hasil Cetak Maksimal</b><small>Warna tajam dan presisi tinggi</small></div></article>
-        <article><span data-icon="solution"></span><div><b>Solusi Sesuai Kebutuhan</b><small>Rekomendasi bahan terbaik</small></div></article>
-        <article><span data-icon="people"></span><div><b>Berpengalaman</b><small>Didukung tim profesional</small></div></article>
+      <div class="num" data-no>00<small>/ 0</small></div>
+      <div class="catn" data-cat></div>
+      <h1 class="big" data-title>Memuat…</h1>
+      <dl class="spec" data-spec></dl>
+      <div class="act">
+        <a class="btn p" data-ask href="#" target="_blank" rel="noopener">Tanya Bahan Ini</a>
+        <a class="btn" data-see href="/portofolio.html">Lihat Produk</a>
       </div>
     </section>
+    <section class="stage" data-stage aria-label="Daftar material dan finishing"></section>
   </main>
-
-  <footer class="site-footer">
-  <div class="footer-grid">
-    <div>
-      <a class="brand brand-footer brand-primary" href="/">
-        <img class="brand-logo-image" src="/assets/brand/nexora-logo-primary.png" alt="NEXORA">
-        <span class="brand-tagline">PRINTING &amp; PACKAGING</span>
-      </a>
-      <p>Solusi printing dan packaging custom dengan portofolio hasil produksi nyata.</p>
-    </div>
-    <div>
-      <h3>Jelajahi</h3>
-      <a href="/portofolio.html">Portofolio</a>
-      <a href="/material-finishing.html">Material &amp; Finishing</a>
-      <a href="/kontak.html">Kontak</a>
-    </div>
-    <div>
-      <h3>Filter Portofolio</h3>
-      <a href="/portofolio.html?category=packaging">Packaging</a>
-      <a href="/portofolio.html?category=buku-majalah">Buku &amp; Majalah</a>
-      <a href="/portofolio.html?category=label-stiker">Label &amp; Stiker</a>
-    </div>
-    <div>
-      <h3>Kontak</h3>
-      <a data-business-whatsapp href="#">WhatsApp</a>
-      <a data-business-email href="mailto:info@nexora.id">info@nexora.id</a>
-      <p data-business-address>Bandung, Jawa Barat</p>
-    </div>
+  <nav class="chips" data-chips aria-label="Kelompok"></nav>
   </div>
-  <div class="footer-bottom">
-    <span>© <span data-current-year></span> NEXORA Printing &amp; Packaging.</span>
-    <span>Portofolio menampilkan hasil produksi nyata yang dipublikasikan melalui sistem NEXORA.</span>
-  </div>
-</footer>
-
-  <div class="consultation-modal" data-consultation-modal aria-hidden="true">
+  <div class="modal" data-consultation-modal aria-hidden="true">
   <div class="modal-backdrop" data-close-consultation></div>
-  <section class="consultation-panel" role="dialog" aria-modal="true" aria-labelledby="consultation-title">
+  <section class="panel" role="dialog" aria-modal="true" aria-labelledby="consultation-title">
     <button class="modal-close" type="button" data-close-consultation aria-label="Tutup">×</button>
-    <span class="eyebrow">SMART CONSULTATION</span>
+    <span class="kick">Smart Consultation</span>
     <h2 id="consultation-title">Ceritakan ide produk Anda</h2>
-    <p class="modal-lead">Tiga langkah singkat. Kami susun pesan WhatsApp otomatis agar konsultasi lebih jelas.</p>
-
-    <div class="consult-progress" aria-hidden="true"><span class="active"></span><span></span><span></span></div>
-
-    <form data-consultation-form>
-      <fieldset class="consult-step active" data-step="1">
+    <p class="lead">Tiga langkah singkat. Kami susun pesan WhatsApp otomatis agar konsultasi lebih jelas.</p>
+    <div class="progress" aria-hidden="true"><span class="active"></span><span></span><span></span></div>
+    <form>
+      <fieldset class="active" data-step="1">
         <legend>Apa yang ingin dibuat?</legend>
-        <div class="option-grid">
-          <label><input type="radio" name="category" value="Packaging & Box" required><span class="category-icon" data-icon="box"></span><b>Packaging</b></label>
-          <label><input type="radio" name="category" value="Buku & Majalah"><span class="category-icon" data-icon="book"></span><b>Buku</b></label>
-          <label><input type="radio" name="category" value="Label & Stiker"><span class="category-icon" data-icon="label"></span><b>Label</b></label>
-          <label><input type="radio" name="category" value="Kalender & Agenda"><span class="category-icon" data-icon="calendar"></span><b>Kalender</b></label>
-          <label><input type="radio" name="category" value="Paper Bag"><span class="category-icon" data-icon="bag"></span><b>Paper Bag</b></label>
-          <label><input type="radio" name="category" value="Produk Custom"><span class="category-icon" data-icon="custom"></span><b>Lainnya</b></label>
-        </div>
+        <div class="opts" data-consult-categories><label><input type="radio" name="category" value="Lainnya" required><span>Memuat…</span></label></div>
       </fieldset>
-
-      <fieldset class="consult-step" data-step="2">
+      <fieldset data-step="2">
         <legend>Sejauh mana persiapannya?</legend>
-        <div class="choice-list">
+        <div class="choice">
           <label><input type="radio" name="design" value="Sudah memiliki desain final" required><span><b>Sudah punya desain</b><small>File desain siap diperiksa.</small></span></label>
           <label><input type="radio" name="design" value="Sudah memiliki referensi, tetapi belum final"><span><b>Ada referensi</b><small>Masih perlu penyesuaian.</small></span></label>
           <label><input type="radio" name="design" value="Masih berupa ide dan membutuhkan bantuan desain"><span><b>Masih berupa ide</b><small>Butuh bantuan dari awal.</small></span></label>
         </div>
       </fieldset>
-
-      <fieldset class="consult-step" data-step="3">
+      <fieldset data-step="3">
         <legend>Lengkapi kebutuhan dasar</legend>
-        <div class="form-grid">
-          <label>Nama<input type="text" name="name" placeholder="Nama Anda" required></label>
-          <label>Perkiraan jumlah<input type="text" name="quantity" placeholder="Contoh: 1.000 pcs" required></label>
-          <label class="full">Catatan kebutuhan<textarea name="notes" rows="3" placeholder="Ukuran, target selesai, jenis produk, atau hal lain yang perlu diketahui."></textarea></label>
-        </div>
+        <label class="field">Nama<input type="text" name="name" placeholder="Nama Anda" required autocomplete="name"></label>
+        <label class="field">Perkiraan jumlah<input type="text" name="quantity" placeholder="Contoh: 1.000 pcs" required></label>
+        <label class="field">Catatan kebutuhan<textarea name="notes" rows="3" placeholder="Ukuran, target selesai, jenis produk, atau hal lain yang perlu diketahui."></textarea></label>
       </fieldset>
-
-      <div class="consult-actions">
-        <button type="button" class="btn btn-outline" data-consult-back disabled>Kembali</button>
-        <button type="button" class="btn btn-navy" data-consult-next>Lanjut</button>
-        <button type="submit" class="btn btn-orange" data-consult-submit hidden>Kirim ke WhatsApp</button>
+      <div class="actions">
+        <button type="button" class="btn" data-consult-back disabled>Kembali</button>
+        <button type="button" class="btn p" data-consult-next>Lanjut</button>
+        <button type="submit" class="btn glow" data-consult-submit hidden>Kirim ke WhatsApp</button>
       </div>
     </form>
   </section>
 </div>
 
-
-  <script src="/assets/js/site-config.js?v=5.8.9"></script>
-  <script src="/assets/js/icons.js?v=5.8.9"></script>
-  <script src="/assets/js/main.js?v=5.8.9"></script>
-  <script src="/assets/js/portfolio-data.js?v=5.8.9"></script>
-  <script src="/assets/js/material-finishing-data.js?v=5.8.9"></script>
-  <script src="/assets/js/material-finishing.js?v=5.8.9"></script>
+  <script src="/assets/js/site-config.js?v=6.0.0"></script>
+  <script src="/assets/js/portfolio-data.js?v=6.0.0"></script>
+  <script src="/assets/js/material-finishing-data.js?v=6.0.0"></script>
+  <script src="/assets/js/a2-data.js?v=6.0.0"></script>
+  <script src="/assets/js/a2-stack.js?v=6.0.0"></script>
+  <script src="/assets/js/a2-core.js?v=6.0.0"></script>
+  <script src="/assets/js/a2-material.js?v=6.0.0"></script>
+  <script type="module" src="/assets/js/samudra.js?v=6.0.0"></script>
 </body>
 </html>

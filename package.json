@@ -1,23 +1,20 @@
-{
-  "name": "nexora-printing-packaging-v5-8-9-mf-grid-row-lock",
-  "version": "5.8.9",
-  "private": true,
-  "type": "module",
-  "description": "NEXORA Printing & Packaging \u2014 fixes Material/Finishing async grid row collapse while preserving Production rendering.",
-  "scripts": {
-    "build": "node scripts/build.mjs",
-    "dev": "node scripts/dev-server.mjs",
-    "verify": "node scripts/verify.mjs",
-    "qa": "npm run build && npm run verify && npm run verify:portfolio && npm run verify:material && npm run verify:integration && npm run verify:readiness && npm run verify:ui589",
-    "verify:portfolio": "node scripts/verify-portfolio.mjs",
-    "verify:material": "node scripts/verify-material-finishing.mjs",
-    "verify:integration": "node scripts/verify-public-integration.mjs",
-    "verify:readiness": "node scripts/verify-production-readiness.mjs",
-    "verify:ui584": "node scripts/verify-v5.8.4-ui.mjs",
-    "verify:ui588": "node scripts/verify-v5.8.8-ui.mjs",
-    "verify:ui589": "node scripts/verify-v5.8.9-ui.mjs"
-  },
-  "engines": {
-    "node": ">=18"
-  }
+﻿{
+    "name":  "nexora-printing-packaging",
+    "version":  "6.0.0",
+    "private":  true,
+    "type":  "module",
+    "description":  "NEXORA Printing \u0026 Packaging v6 - tampilan A2 Samudra, data dari Agent Project Finance.",
+    "scripts":  {
+                    "build":  "node scripts/build.mjs",
+                    "dev":  "node scripts/dev-server.mjs",
+                    "verify":  "node scripts/verify.mjs",
+                    "qa":  "npm run build \u0026\u0026 npm run verify \u0026\u0026 npm run verify:portfolio \u0026\u0026 npm run verify:material \u0026\u0026 npm run verify:integration \u0026\u0026 npm run verify:readiness",
+                    "verify:portfolio":  "node scripts/verify-portfolio.mjs",
+                    "verify:material":  "node scripts/verify-material-finishing.mjs",
+                    "verify:integration":  "node scripts/verify-public-integration.mjs",
+                    "verify:readiness":  "node scripts/verify-production-readiness.mjs"
+                },
+    "engines":  {
+                    "node":  "\u003e=18"
+                }
 }

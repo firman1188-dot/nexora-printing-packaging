@@ -1,48 +1,34 @@
-<div class="consultation-modal" data-consultation-modal aria-hidden="true">
+<div class="modal" data-consultation-modal aria-hidden="true">
   <div class="modal-backdrop" data-close-consultation></div>
-  <section class="consultation-panel" role="dialog" aria-modal="true" aria-labelledby="consultation-title">
+  <section class="panel" role="dialog" aria-modal="true" aria-labelledby="consultation-title">
     <button class="modal-close" type="button" data-close-consultation aria-label="Tutup">×</button>
-    <span class="eyebrow">SMART CONSULTATION</span>
+    <span class="kick">Smart Consultation</span>
     <h2 id="consultation-title">Ceritakan ide produk Anda</h2>
-    <p class="modal-lead">Tiga langkah singkat. Kami susun pesan WhatsApp otomatis agar konsultasi lebih jelas.</p>
-
-    <div class="consult-progress" aria-hidden="true"><span class="active"></span><span></span><span></span></div>
-
-    <form data-consultation-form>
-      <fieldset class="consult-step active" data-step="1">
+    <p class="lead">Tiga langkah singkat. Kami susun pesan WhatsApp otomatis agar konsultasi lebih jelas.</p>
+    <div class="progress" aria-hidden="true"><span class="active"></span><span></span><span></span></div>
+    <form>
+      <fieldset class="active" data-step="1">
         <legend>Apa yang ingin dibuat?</legend>
-        <div class="option-grid">
-          <label><input type="radio" name="category" value="Packaging & Box" required><span class="category-icon" data-icon="box"></span><b>Packaging</b></label>
-          <label><input type="radio" name="category" value="Buku & Majalah"><span class="category-icon" data-icon="book"></span><b>Buku</b></label>
-          <label><input type="radio" name="category" value="Label & Stiker"><span class="category-icon" data-icon="label"></span><b>Label</b></label>
-          <label><input type="radio" name="category" value="Kalender & Agenda"><span class="category-icon" data-icon="calendar"></span><b>Kalender</b></label>
-          <label><input type="radio" name="category" value="Paper Bag"><span class="category-icon" data-icon="bag"></span><b>Paper Bag</b></label>
-          <label><input type="radio" name="category" value="Produk Custom"><span class="category-icon" data-icon="custom"></span><b>Lainnya</b></label>
-        </div>
+        <div class="opts" data-consult-categories><label><input type="radio" name="category" value="Lainnya" required><span>Memuat…</span></label></div>
       </fieldset>
-
-      <fieldset class="consult-step" data-step="2">
+      <fieldset data-step="2">
         <legend>Sejauh mana persiapannya?</legend>
-        <div class="choice-list">
+        <div class="choice">
           <label><input type="radio" name="design" value="Sudah memiliki desain final" required><span><b>Sudah punya desain</b><small>File desain siap diperiksa.</small></span></label>
           <label><input type="radio" name="design" value="Sudah memiliki referensi, tetapi belum final"><span><b>Ada referensi</b><small>Masih perlu penyesuaian.</small></span></label>
           <label><input type="radio" name="design" value="Masih berupa ide dan membutuhkan bantuan desain"><span><b>Masih berupa ide</b><small>Butuh bantuan dari awal.</small></span></label>
         </div>
       </fieldset>
-
-      <fieldset class="consult-step" data-step="3">
+      <fieldset data-step="3">
         <legend>Lengkapi kebutuhan dasar</legend>
-        <div class="form-grid">
-          <label>Nama<input type="text" name="name" placeholder="Nama Anda" required></label>
-          <label>Perkiraan jumlah<input type="text" name="quantity" placeholder="Contoh: 1.000 pcs" required></label>
-          <label class="full">Catatan kebutuhan<textarea name="notes" rows="3" placeholder="Ukuran, target selesai, jenis produk, atau hal lain yang perlu diketahui."></textarea></label>
-        </div>
+        <label class="field">Nama<input type="text" name="name" placeholder="Nama Anda" required autocomplete="name"></label>
+        <label class="field">Perkiraan jumlah<input type="text" name="quantity" placeholder="Contoh: 1.000 pcs" required></label>
+        <label class="field">Catatan kebutuhan<textarea name="notes" rows="3" placeholder="Ukuran, target selesai, jenis produk, atau hal lain yang perlu diketahui."></textarea></label>
       </fieldset>
-
-      <div class="consult-actions">
-        <button type="button" class="btn btn-outline" data-consult-back disabled>Kembali</button>
-        <button type="button" class="btn btn-navy" data-consult-next>Lanjut</button>
-        <button type="submit" class="btn btn-orange" data-consult-submit hidden>Kirim ke WhatsApp</button>
+      <div class="actions">
+        <button type="button" class="btn" data-consult-back disabled>Kembali</button>
+        <button type="button" class="btn p" data-consult-next>Lanjut</button>
+        <button type="submit" class="btn glow" data-consult-submit hidden>Kirim ke WhatsApp</button>
       </div>
     </form>
   </section>
