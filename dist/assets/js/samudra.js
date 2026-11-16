@@ -26,11 +26,11 @@ const FRAG = `varying vec3 vColor; varying float vAlpha; void main(){ float d=le
     const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, powerPreference: 'high-performance' });
     const small = innerWidth < 760;
     const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-    renderer.setPixelRatio(Math.min(devicePixelRatio || 1, small ? 1.5 : 2));
+    renderer.setPixelRatio(small ? 1 : Math.min(devicePixelRatio || 1, 1.5));
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(50, 1, .1, 100);
     camera.position.set(0, 2.6, 9);
-    const cols = small ? 110 : 250, rows = small ? 100 : 170, width = 100, zFar = -72, zNear = 6;
+    const cols = small ? 84 : 250, rows = small ? 72 : 170, width = 100, zFar = -72, zNear = 6;
     const pos = new Float32Array(cols * rows * 3);
     let k = 0;
     for (let j = 0; j < rows; j++) for (let i = 0; i < cols; i++) {
@@ -44,7 +44,7 @@ const FRAG = `varying vec3 vColor; varying float vAlpha; void main(){ float d=le
     const mat = new THREE.ShaderMaterial({ vertexShader: VERT, fragmentShader: FRAG, uniforms: u, transparent: true, depthWrite: false, depthTest: false, blending: THREE.AdditiveBlending });
     const field = new THREE.Points(geo, mat); field.frustumCulled = false; scene.add(field);
 
-    const sc = small ? 160 : 340, sp = new Float32Array(sc * 3);
+    const sc = small ? 110 : 340, sp = new Float32Array(sc * 3);
     for (let i = 0; i < sc; i++) { sp[i * 3] = (Math.random() - .5) * 70; sp[i * 3 + 1] = (Math.random() - .5) * 16; sp[i * 3 + 2] = (Math.random() - .5) * 30 - 1.5; }
     const sg = new THREE.BufferGeometry(); sg.setAttribute('position', new THREE.BufferAttribute(sp, 3));
     const dot = document.createElement('canvas'); dot.width = dot.height = 64;
@@ -64,9 +64,12 @@ const FRAG = `varying vec3 vColor; varying float vAlpha; void main(){ float d=le
     };
     addEventListener('resize', resize); resize();
     let t = 0, last = performance.now();
+    let lastDraw = 0;
     const frame = (now) => {
       requestAnimationFrame(frame);
       if (document.hidden) { last = now; return; }
+      if (small && now - lastDraw < 33) return; // ponsel: 30 fps agar ringan
+      lastDraw = now;
       const dt = Math.min(.05, (now - last) / 1000); last = now;
       t += dt * (reduced ? .25 : 1);
       ptr.x += (ptr.tx - ptr.x) * .05; ptr.y += (ptr.ty - ptr.y) * .05;

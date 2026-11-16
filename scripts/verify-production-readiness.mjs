@@ -14,7 +14,7 @@ for (const file of [
 }
 
 const css = await readFile(path.join(root, 'src/assets/css/a2.css'), 'utf8');
-for (const contract of ['--bar:62px', '.tabbar', 'env(safe-area-inset-bottom)', '@media(max-width:860px)', 'prefers-reduced-motion']) {
+for (const contract of ['--bar:60px', '.tabbar', 'env(safe-area-inset-bottom)', '@media(max-width:860px)', 'prefers-reduced-motion', '100dvh']) {
   if (!css.includes(contract)) throw new Error(`Kontrak tampilan ponsel belum ditemukan: ${contract}`);
 }
 const build = await readFile(path.join(root, 'scripts/build.mjs'), 'utf8');
@@ -42,8 +42,8 @@ if (!vercel.includes('public, max-age=0, must-revalidate')) {
 
 for (const page of ['index.html', 'portofolio.html', 'material-finishing.html', 'kontak.html']) {
   const html = await readFile(path.join(root, 'src/pages', page), 'utf8');
-  if (!html.includes('/assets/css/a2.css?v=6.0.0')) {
-    throw new Error(`${page}: cache-busting CSS v6.0.0 belum terpasang.`);
+  if (!html.includes('/assets/css/a2.css?v=6.1.0')) {
+    throw new Error(`${page}: cache-busting CSS v6.1.0 belum terpasang.`);
   }
   if (!html.includes('rel="canonical"') || !html.includes('og:title')) {
     throw new Error(`${page}: canonical / Open Graph belum ada.`);

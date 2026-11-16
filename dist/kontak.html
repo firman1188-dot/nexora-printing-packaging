@@ -14,9 +14,9 @@
   <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/css/a2.css?v=6.0.0">
+  <link rel="stylesheet" href="/assets/css/a2.css?v=6.1.0">
 </head>
-<body data-page="contact" class="is-scroll">
+<body data-page="contact">
   <div class="sky" data-sky aria-hidden="true"></div>
 <header class="site-header">
   <a class="brand" href="/" aria-label="NEXORA Printing &amp; Packaging - Beranda">NEXORA<small>PRINTING &amp; PACKAGING</small></a>
@@ -36,8 +36,12 @@
 </nav>
 
   <div id="app">
-  <main class="contact">
-    <section class="glass">
+  <main class="contact" data-contact data-tab="info">
+    <div class="seg ctab" role="tablist" aria-label="Pilih panel">
+      <button type="button" class="on" role="tab" data-ctab="info">Hubungi</button>
+      <button type="button" role="tab" data-ctab="form">Kirim Pesan</button>
+    </div>
+    <section class="glass" data-pane="info">
       <span class="kick">Kontak NEXORA</span>
       <h1>Mulai dari kebutuhan, bukan istilah teknis.</h1>
       <p>Ceritakan produk yang ingin dibuat. Tim NEXORA membantu mengarahkan bentuk, material, finishing, jumlah, dan tahapan berikutnya.</p>
@@ -54,16 +58,16 @@
         <div><b>04</b><span>Produksi</span></div>
       </div>
     </section>
-    <section class="glass">
+    <section class="glass" data-pane="form">
       <span class="kick">Kirim pesan</span>
-      <h1 style="font-size:clamp(24px,2.6vw,36px)">Form konsultasi singkat</h1>
-      <form data-contact-form>
+      <h1 style="font-size:clamp(22px,2.4vw,34px)">Form konsultasi singkat</h1>
+      <form class="contact-form" data-contact-form>
         <label class="field">Nama<input type="text" name="name" required placeholder="Nama lengkap" autocomplete="name"></label>
         <label class="field">WhatsApp<input type="tel" name="phone" required placeholder="08xxxxxxxxxx" autocomplete="tel" inputmode="tel" pattern="[0-9+\s-]{8,}"></label>
         <label class="field">Kategori<select name="category" data-contact-categories><option>Memuat…</option></select></label>
         <label class="field">Perkiraan jumlah<input type="text" name="quantity" placeholder="Contoh: 1.000 pcs"></label>
-        <label class="field">Pesan<textarea name="message" rows="4" required placeholder="Jelaskan produk, ukuran, desain, target selesai, atau referensi yang dimiliki."></textarea></label>
-        <button class="btn glow" type="submit" style="width:100%">Kirim melalui WhatsApp</button>
+        <label class="field full">Pesan<textarea name="message" rows="3" required placeholder="Jelaskan produk, ukuran, desain, target selesai, atau referensi."></textarea></label>
+        <button class="btn glow full" type="submit">Kirim melalui WhatsApp</button>
       </form>
     </section>
   </main>
@@ -104,12 +108,12 @@
   </section>
 </div>
 
-  <script src="/assets/js/site-config.js?v=6.0.0"></script>
-  <script src="/assets/js/portfolio-data.js?v=6.0.0"></script>
-  <script src="/assets/js/a2-data.js?v=6.0.0"></script>
-  <script src="/assets/js/a2-stack.js?v=6.0.0"></script>
-  <script src="/assets/js/a2-core.js?v=6.0.0"></script>
-  <script src="/assets/js/a2-contact.js?v=6.0.0"></script>
-  <script type="module" src="/assets/js/samudra.js?v=6.0.0"></script>
+  <script src="/assets/js/site-config.js?v=6.1.0"></script>
+  <script src="/assets/js/portfolio-data.js?v=6.1.0"></script>
+  <script src="/assets/js/a2-data.js?v=6.1.0"></script>
+  <script src="/assets/js/a2-stack.js?v=6.1.0"></script>
+  <script src="/assets/js/a2-core.js?v=6.1.0"></script>
+  <script src="/assets/js/a2-contact.js?v=6.1.0"></script>
+  <script type="module" src="/assets/js/samudra.js?v=6.1.0"></script>
 </body>
 </html>
