@@ -1,20 +1,20 @@
-﻿{
-    "name":  "nexora-printing-packaging",
-    "version":  "6.0.0",
-    "private":  true,
-    "type":  "module",
-    "description":  "NEXORA Printing \u0026 Packaging v6 - tampilan A2 Samudra, data dari Agent Project Finance.",
-    "scripts":  {
-                    "build":  "node scripts/build.mjs",
-                    "dev":  "node scripts/dev-server.mjs",
-                    "verify":  "node scripts/verify.mjs",
-                    "qa":  "npm run build \u0026\u0026 npm run verify \u0026\u0026 npm run verify:portfolio \u0026\u0026 npm run verify:material \u0026\u0026 npm run verify:integration \u0026\u0026 npm run verify:readiness",
-                    "verify:portfolio":  "node scripts/verify-portfolio.mjs",
-                    "verify:material":  "node scripts/verify-material-finishing.mjs",
-                    "verify:integration":  "node scripts/verify-public-integration.mjs",
-                    "verify:readiness":  "node scripts/verify-production-readiness.mjs"
-                },
-    "engines":  {
-                    "node":  "\u003e=18"
-                }
+{
+  "name": "nexora-printing-packaging",
+  "version": "6.0.0",
+  "private": true,
+  "type": "module",
+  "description": "NEXORA Printing & Packaging v6 - tampilan A2 Samudra, data dari Agent Project Finance.",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "dev": "node scripts/dev-server.mjs",
+    "verify": "node scripts/verify.mjs",
+    "qa": "npm run build && npm run verify && npm run verify:portfolio && npm run verify:material && npm run verify:integration && npm run verify:readiness",
+    "verify:portfolio": "node scripts/verify-portfolio.mjs",
+    "verify:material": "node scripts/verify-material-finishing.mjs",
+    "verify:integration": "node scripts/verify-public-integration.mjs",
+    "verify:readiness": "node scripts/verify-production-readiness.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  }
 }
